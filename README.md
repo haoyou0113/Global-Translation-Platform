@@ -1,10 +1,45 @@
+Git management
+
+1 - When we started, we had to download the latest code of master, because the GitHub code contains the code of all the members, and we can only ensure that the code of each member is the same after we continue.
+
+2 - If you are going to do a new feature that day, you must first open a new branch and then pull down the GitHub code.
+
+3 - If you want to continue with this branch, you don't have to update the code first.
+
+4 - Before the end of the day, you have to upload your code, but sometimes you don't have to upload all the code, so we'll add the file to the staging area, give it a commit, and then push it up.
+
+5 - When pushed up, remember to go to GitHub and send the code request to the version control leader.
+
+Pull
+
+1 - git status
+2 - git fetch & checkout branchname
+3 - git pull
+
+push
+
+4 - git add
+5 - git commit -m ‘msg’
+6 - git push
+
+Some questions I encountered before
+
+1 - Commit behind the master
+https://stackoverflow.com/questions/34118404/what-i-can-do-to-resolve-1-commit-behind-master
+
+2 - Resolve merge conflicts
+https://confluence.atlassian.com/bitbucket/resolve-merge-conflicts-704414003.html
+
+3 - Separate commits into branches
+git fetch && git checkout -b bug_17 f5d7940d
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### `npm start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -12,12 +47,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `yarn test`
+### `npm test`
 
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+### `npm build`
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -27,7 +62,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+### `npm eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -63,6 +98,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/ad
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### `yarn build` fails to minify
+### `npm build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
