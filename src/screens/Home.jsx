@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import { Button } from 'antd';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -17,14 +17,7 @@ export const Home = () => {
     <div>
       <Typography variant='h3'>{'This is Home page'}</Typography>
       <Link to='/dashboard'>
-        <Button
-          variant='contained'
-          color='primary'
-          href='#contained-buttons'
-          className={classes.button}
-        >
-          Link to Dashboard
-        </Button>
+        <Button>Link to Dashboard</Button>
       </Link>
     </div>
   );
