@@ -7,9 +7,9 @@ const originData = [];
 for (let i = 0; i < 100; i++) {
   originData.push({
     key: i.toString(),
-    name: `Edrward ${i}`,
-    age: 32,
-    address: `London Park no. ${i}`,
+    name: `Translator ${i}`,
+    age: 25,
+    address: `Brisbane QUT block ${i}`,
   });
 }
 
@@ -130,9 +130,16 @@ const UsersManagement = () => {
             </Popconfirm>
           </span>
         ) : (
-          <a disabled={editingKey !== ''} onClick={() => edit(record)}>
-            Edit
-          </a>
+          <div>
+            {' '}
+            <a disabled={editingKey !== ''} onClick={() => edit(record)}>
+              Edit
+            </a>
+            <a> </a>
+            <a>Reward</a>
+            <a> </a>
+            <a>Promote</a>
+          </div>
         );
       },
     },
