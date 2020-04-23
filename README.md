@@ -10,10 +10,6 @@ Git management
 
 5 - When pushed up, remember to go to GitHub and send the code request to the version control leader.
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 890e0700149c9f400cf11119e474a227df5069a2
 Pull
 
 1 - git status
@@ -26,10 +22,6 @@ push
 5 - git commit -m ‘msg’
 6 - git push
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 890e0700149c9f400cf11119e474a227df5069a2
 Some questions I encountered before
 
 1 - Commit behind the master
@@ -41,11 +33,6 @@ https://confluence.atlassian.com/bitbucket/resolve-merge-conflicts-704414003.htm
 3 - Separate commits into branches
 git fetch && git checkout -b bug_17 f5d7940d
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 890e0700149c9f400cf11119e474a227df5069a2
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
