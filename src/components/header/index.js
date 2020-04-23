@@ -7,12 +7,12 @@ export default class Header extends React.Component {
   state = {};
   componentWillMount() {
     this.setState({
-      userName: 'haoyou'
+      userName: 'You Hao',
     });
     setInterval(() => {
       let sysTime = Util.formateDate(new Date().getTime());
       this.setState({
-        sysTime
+        sysTime,
       });
     }, 1000);
     this.getWeatherAPIData();
@@ -45,14 +45,14 @@ export default class Header extends React.Component {
           {menuType ? (
             <Col span='6' className='logo'>
               <img src='/assets/logo-ant.svg' alt='' />
-              <span>IMooc 通用管理系统</span>
+              <span></span>
             </Col>
           ) : (
             ''
           )}
           <Col span={menuType ? 18 : 24}>
             <span>Welcome {this.state.userName}</span>
-            <a href='#'>Logout</a>
+            <a href='/'>Logout</a>
           </Col>
         </Row>
         {menuType ? (

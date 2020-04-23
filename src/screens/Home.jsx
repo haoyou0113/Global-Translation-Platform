@@ -16,7 +16,7 @@ export const Home = () => {
   return (
     <div>
       <Typography variant='h3'>{'This is Home page'}</Typography>
-      <Link to='/dashboard'>
+      <Link to='/dashboard/books'>
         <Button>Link to Dashboard</Button>
       </Link>
     </div>

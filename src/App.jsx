@@ -3,7 +3,8 @@ import logo from './logo.svg';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { Home } from './screens/Home';
 import { Dashboard } from './screens/Dashboard';
-import { BooksManagement } from './pages/BooksManagement';
+import BooksManagement from './pages/BooksManagement';
+import UsersManagement from './pages/UserManagement';
 import { Typography, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import './App.css';
@@ -35,16 +36,16 @@ export const App = ({ id }: AppProps) => {
     <BrowserRouter>
       <div className='test-app'>
         <Typography variant='h2'>global translation platform</Typography>
-        <Dashboard>
-          <Route path='/' exact component={Home}></Route>
-          <Route path='/dashboard' exact component={Dashboard}></Route>
-          <Route
-            path='/dashboard/books'
-            exact
-            component={BooksManagement}
-          ></Route>
-        </Dashboard>
-        {/* <Route path='/listview' exact component={ListView}></Route> */}
+        <Route path='/' exact component={Home}></Route>
+        <Route
+          path='/dashboard'
+          render={() => (
+            <Dashboard>
+              <Route path='/dashboard/users' component={UsersManagement} />
+              <Route path='/dashboard/books' component={BooksManagement} />
+            </Dashboard>
+          )}
+        ></Route>
       </div>
     </BrowserRouter>
   );
