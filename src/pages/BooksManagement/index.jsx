@@ -82,7 +82,7 @@ class BooksManagement extends React.Component {
     {
       key: 0,
       date: '2018-02-11',
-      amount: 120,
+      amount: 9999,
       type: 'Story',
       bookstitle: 'datouerzi xiaotoubaba',
       note: 'Translated',
