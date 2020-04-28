@@ -36,6 +36,7 @@ class BooksManagement extends React.Component {
         title: 'Date',
         dataIndex: 'date',
         width: 200,
+        sorter: (a, b) => a.amount - b.amount,
       },
       {
         title: 'Amount',
@@ -47,16 +48,19 @@ class BooksManagement extends React.Component {
         title: 'Type',
         dataIndex: 'type',
         width: 100,
+        sorter: (a, b) => a.amount - b.amount,
       },
       {
         title: 'Note',
         dataIndex: 'note',
         width: 100,
+        sorter: (a, b) => a.amount - b.amount,
       },
       {
         title: 'Book-Title',
         dataIndex: 'bookstitle',
         width: 200,
+        sorter: (a, b) => a.amount - b.amount,
       },
       {
         title: 'Action',
