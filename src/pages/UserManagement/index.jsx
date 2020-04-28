@@ -35,7 +35,7 @@ const EditableCell = ({
           rules={[
             {
               required: true,
-              message: `Please Input ${title}!`,
+              message: `Please input ${title}!`,
             },
           ]}
         >
@@ -125,7 +125,7 @@ const UsersManagement = () => {
             >
               Save
             </a>
-            <Popconfirm title='Sure to cancel?' onConfirm={cancel}>
+            <Popconfirm title='Are you sure to cancel?' onConfirm={cancel}>
               <a>Cancel</a>
             </Popconfirm>
           </span>
