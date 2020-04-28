@@ -7,6 +7,6 @@ export default class Footer extends Component {
   }
 
   render() {
-    return <div className='footer'>CoypRights @2019</div>;
+    return <div className='footer'>©2020 LIBRARY FOR ALL</div>;
   }
 }
