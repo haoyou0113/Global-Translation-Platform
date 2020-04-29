@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+
+
+.test-app h2{
+  font-size: 50px;
+  color: rgb(32, 15, 15);
+  font-style: oblique;
+  line-height: 0.8em;
+}
+
+
+.lfa_logo_img{
+  height: 185px;
+  padding-top: 1em;
+  position:absolute; top:0%; right:4%
+
+}
+
+.lfa_children_img{
+  height: 121px;
+  padding-top: 0.3em;
+  margin:auto
+}

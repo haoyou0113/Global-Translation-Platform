@@ -35,7 +35,8 @@ export const App = ({ id }: AppProps) => {
   return (
     <BrowserRouter>
       <div className='test-app'>
-        <Typography variant='h2'>Global Translation Platform</Typography>
+        {/* <Typography variant='h2' align = "center" color = "primary" paragraph = "true"> Global Translation Platform</Typography> */}
+        <h2> Global Translation Platform </h2>  
         <Route path='/' exact component={Home}></Route>
         <Route
           path='/dashboard'
