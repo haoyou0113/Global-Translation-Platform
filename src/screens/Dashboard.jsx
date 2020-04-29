@@ -22,7 +22,14 @@ export const Dashboard = (props) => {
 
   return (
     <div>
-      <Typography variant='h3'>{'This is Dashboard page'}</Typography>
+    <img 
+        src= "https://libraryforall.org/wp-content/uploads/2019/07/Two-PNG-students-with-Library-For-All-tablets.jpg"
+        alt = "lfa_children"
+        className = "lfa_children_img"/> 
+     <img 
+                    src= "https://pbs.twimg.com/profile_images/1088002314374307840/Nq8bBLZo_400x400.jpg"
+                    alt = "lfa_logo"
+                    className = "lfa_logo_img" /> 
       <Row className='container'>
         <Col span='4' className='nav-left'>
           <NavLeft />
