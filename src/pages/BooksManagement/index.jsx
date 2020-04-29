@@ -1,61 +1,34 @@
 import { Table } from 'antd';
 import { Resizable } from 'react-resizable';
-import React from 'react';
-
-const ResizeableTitle = (props) => {
-  const { onResize, width, ...restProps } = props;
-
-  if (!width) {
-    return <th {...restProps} />;
-  }
-
-  return (
-    <Resizable
-      width={width}
-      height={0}
-      handle={(resizeHandle) => (
-        <span
-          className={`react-resizable-handle react-resizable-handle-${resizeHandle}`}
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-        />
-      )}
-      onResize={onResize}
-      draggableOpts={{ enableUserSelectHack: false }}
-    >
-      <th {...restProps} />
-    </Resizable>
-  );
-};
-
-class BooksManagement extends React.Component {
-  state = {
+import React, { useEffect, useState } from 'react';
+import { get } from '../../utils/request';
+const BooksManagement = () => {
+  const [originBooks, setOriginBooks] = useState([]);
+  const state = {
     columns: [
       {
-        title: 'Date',
-        dataIndex: 'date',
+        title: 'Name',
+        dataIndex: 'name',
         width: 200,
       },
       {
-        title: 'Amount',
-        dataIndex: 'amount',
-        width: 100,
-        sorter: (a, b) => a.amount - b.amount,
-      },
-      {
-        title: 'Type',
-        dataIndex: 'type',
+        title: 'Author',
+        dataIndex: 'author',
         width: 100,
       },
       {
-        title: 'Note',
-        dataIndex: 'note',
+        title: 'Category',
+        dataIndex: 'category',
         width: 100,
       },
       {
-        title: 'Book-Title',
-        dataIndex: 'bookstitle',
+        title: 'Publisher',
+        dataIndex: 'publisher',
+        width: 100,
+      },
+      {
+        title: 'Translation Number',
+        dataIndex: 'trans_num',
         width: 200,
       },
       {
@@ -64,21 +37,17 @@ class BooksManagement extends React.Component {
         render: () => (
           <div>
             <a>Delete</a>
-            <a href=''> </a>
+            <a> </a>
             <a>Publish</a>
+            <a> </a>
+            <a>Review</a>
           </div>
         ),
       },
     ],
   };
 
-  components = {
-    header: {
-      cell: ResizeableTitle,
-    },
-  };
-
-  data = [
+  const data = [
     {
       key: 0,
       date: '2018-02-11',
@@ -105,35 +74,23 @@ class BooksManagement extends React.Component {
     },
   ];
 
-  handleResize = (index) => (e, { size }) => {
-    this.setState(({ columns }) => {
-      const nextColumns = [...columns];
-      nextColumns[index] = {
-        ...nextColumns[index],
-        width: size.width,
-      };
-      return { columns: nextColumns };
+  useEffect(() => {
+    get('http://localhost:8080/api/origin/list').then((res) => {
+      if (res.errno === 0) {
+        setOriginBooks(res.data);
+        console.log(res.data);
+      }
     });
-  };
+  }, []);
 
-  render() {
-    const columns = this.state.columns.map((col, index) => ({
-      ...col,
-      onHeaderCell: (column) => ({
-        width: column.width,
-        onResize: this.handleResize(index),
-      }),
-    }));
+  const columns = state.columns.map((col, index) => ({
+    ...col,
+    onHeaderCell: (column) => ({
+      width: column.width,
+    }),
+  }));
 
-    return (
-      <Table
-        bordered
-        components={this.components}
-        columns={columns}
-        dataSource={this.data}
-      />
-    );
-  }
-}
+  return <Table bordered columns={columns} dataSource={originBooks} />;
+};
 
 export default BooksManagement;

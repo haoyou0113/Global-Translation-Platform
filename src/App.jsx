@@ -35,7 +35,6 @@ export const App = ({ id }: AppProps) => {
   return (
     <BrowserRouter>
       <div className='test-app'>
-        <Typography variant='h2'>global translation platform</Typography>
         <Route path='/' exact component={Home}></Route>
         <Route
           path='/dashboard'

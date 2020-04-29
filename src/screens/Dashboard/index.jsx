@@ -4,13 +4,12 @@ import { Link, Route, BrowserRouter } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { Row, Col } from 'antd';
-import Header from '../components/header';
-import Footer from '../components/footer';
-import NavLeft from '../components/navLeft';
-import { BooksManagement } from '../pages/BooksManagement/index';
-import { UsersManagement } from '../pages/UserManagement';
-
-import '../common/common.less';
+import Header from '../../components/header';
+import Footer from '../../components/footer';
+import NavLeft from '../../components/navLeft';
+import { BooksManagement } from '../../pages/BooksManagement/index';
+import { UsersManagement } from '../../pages/UserManagement';
+import '../../common/common.less';
 
 const useStyles = makeStyles((theme) => ({
   button: {
