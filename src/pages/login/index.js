@@ -1,5 +1,5 @@
 import React from '../../../node_modules/react';
-import { Form, Input, Button, Checkbox } from '../../../node_modules/antd';
+import { Form, Input, Button } from '../../../node_modules/antd';
 
 import './index.less';
 

@@ -2,20 +2,15 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Layout } from 'antd';
-import { Typography } from '@material-ui/core';
-// import { makeStyles } from '@material-ui/core/styles';
-import './index.css';
+import { Button, Layout, Typography } from 'antd';
+import Gallery from './components/Gallery';
 import Menu from './components/Menu';
 import TopContent from './components/TopContent';
 import { get, post } from '../../utils/request';
 import Login from '../../pages/Login';
+import './index.css';
+const { Title } = Typography;
 
-// const useStyles = makeStyles((theme) => ({
-//   button: {
-//     marginBottom: theme.spacing(1),
-//   },
-// }));
 const { Header, Footer, Sider, Content } = Layout;
 
 export const Home = () => {
@@ -45,6 +40,10 @@ export const Home = () => {
           <div className='topContent'>
             <TopContent />
           </div>
+          <Title level={2} style={{ textAlign: 'center' }}>
+            Books You Might Want
+          </Title>
+          <Gallery />
         </Content>
         <Footer>
           <Link to='/dashboard/books'>

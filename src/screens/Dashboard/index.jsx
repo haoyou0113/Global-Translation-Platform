@@ -7,6 +7,7 @@ import { Row, Col } from 'antd';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 import NavLeft from '../../components/navLeft';
+import './index.css';
 import { BooksManagement } from '../../pages/BooksManagement/index';
 import { UsersManagement } from '../../pages/UserManagement';
 import '../../common/common.less';
