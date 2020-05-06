@@ -3,3 +3,22 @@
     color: #fff;
     margin-left: 150px;
 }
+
+.loginLogo {
+
+    position: absolute !important;
+    right: 20px;
+
+}
+
+.loginLogo a {
+    color: #fff !important;
+}
+
+.loginLogo span {
+    margin-right: 10px;
+}
+
+.dashboardMenu>a {
+    color: #fff !important;
+}

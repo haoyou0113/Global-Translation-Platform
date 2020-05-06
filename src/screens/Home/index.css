@@ -1,14 +1,3 @@
-.topContent {
-    background-position: center center;
-    background-image: url("https://libraryforall.org/wp-content/uploads/2019/10/Library-For-All-Australia-working-in-Papue-New-Guinea-1500x750.jpg");
-    visibility: visible;
-    background-size: 100% 100%;
-    opacity: 1;
-    transition: none 0s ease 0s;
-    transform: translateZ(0px);
-    height: 1000px;
-}
-
 .logoTop {
     position: absolute;
     display: inline;
@@ -18,23 +7,7 @@
     opacity: 1;
 }
 
-.topContent>div {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
 
-.topContent>div>span>span>input {
-    /* padding-left: 20; */
-    height: 55px;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-}
-
-.topContent>div>span>span>span {
-    background-color: #f9c700;
-}
 
 .loginCom {
     position: absolute;
@@ -44,7 +17,3 @@
     width: 100vw;
     padding: 300px
 }
-
-/* .homeContent {
-    height: 100vh;
-} */
