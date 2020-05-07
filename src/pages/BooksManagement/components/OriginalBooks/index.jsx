@@ -32,29 +32,20 @@ const OriginalBooks = () => {
         dataIndex: 'name',
         width: 200,
       },
+
       {
-        title: 'Author',
-        dataIndex: 'author',
-        width: 100,
+        title: ' Original language',
+        dataIndex: 'original_Language',
+        width: 200,
       },
       {
-        title: 'Category',
-        dataIndex: 'category',
-        width: 100,
+        title: ' Target language',
+        dataIndex: 'target_language',
+        width: 200,
       },
       {
-        title: 'Publisher',
-        dataIndex: 'publisher',
-        width: 100,
-      },
-      {
-        title: 'Publish Time',
-        dataIndex: 'publish_time',
-        width: 100,
-      },
-      {
-        title: 'Translation Number',
-        dataIndex: 'trans_num',
+        title: 'Locking Status',
+        dataIndex: 'locking_status',
         width: 200,
       },
       {
@@ -119,74 +110,32 @@ const OriginalBooks = () => {
         </Form.Item>
         <Form.Item
           {...formItemLayout}
-          name='publisher'
-          label='Publisher'
+          name='original_Language'
+          label='Original Language'
           rules={[
             {
               required: true,
-              message: 'Please input publisher',
+              message: 'Please input Original Language',
             },
           ]}
         >
-          <Input placeholder='Please input publisher' />
+          <Input placeholder='Please input Original Language' />
         </Form.Item>
         <Form.Item
           {...formItemLayout}
-          name='author'
-          label='Book Author'
+          name='target_language'
+          label='Target Language'
           rules={[
             {
               required: true,
-              message: 'Please input the author of this book',
+              message: 'Please input the Target Language of this book',
             },
           ]}
         >
-          <Input placeholder='Please input the author of this book' />
-        </Form.Item>
-        <Form.Item
-          {...formItemLayout}
-          name='language'
-          label='Book Language'
-          rules={[
-            {
-              required: true,
-              message: 'Please input the original language of this book',
-            },
-          ]}
-        >
-          <Input placeholder='Please input  the original language of this book' />
-        </Form.Item>
-        <Form.Item
-          name='category'
-          label='Category'
-          rules={[
-            {
-              required: true,
-              message: 'Please select categories of this book!',
-              type: 'array',
-            },
-          ]}
-        >
-          <Select
-            mode='multiple'
-            placeholder='Please select categories of this book'
-          >
-            <Option value='story'>Story</Option>
-            <Option value='business'>Business</Option>
-            <Option value='history'>History</Option>
-            <Option value='artsMusic'>Arts & Music</Option>
-            <Option value='scienceMath'>Science & Math</Option>
-            <Option value='kids'>Kids</Option>
-          </Select>
+          <Input placeholder='Please input the Target Languager of this book' />
         </Form.Item>
 
-        <Form.Item name='download_loc' label='Download Link'>
-          <Input placeholder='Please input  the Download Link of this book' />
-        </Form.Item>
-        <Form.Item name='publish_time' label='time'>
-          <Input placeholder='Please input  the Download Link of this book' />
-        </Form.Item>
-        {/* <Form.Item label='Dragger'>
+        <Form.Item label='Dragger'>
           <Form.Item
             name='dragger'
             valuePropName='fileList'
@@ -205,7 +154,7 @@ const OriginalBooks = () => {
               </p>
             </Upload.Dragger>
           </Form.Item>
-        </Form.Item> */}
+        </Form.Item>
 
         <Form.Item
           wrapperCol={{

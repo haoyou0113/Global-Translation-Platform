@@ -5,8 +5,10 @@ import { Home } from './screens/Home';
 import { Dashboard } from './screens/Dashboard';
 import BooksManagement from './pages/BooksManagement';
 import UsersManagement from './pages/UserManagement';
+import UserInfor from './pages/UserInfor';
 import { Typography, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import HomeContent from './screens/Home/components/Gallery';
 import './App.css';
 
 type AppProps = {
@@ -34,18 +36,26 @@ export const App = ({ id }: AppProps) => {
   // const { site } = useContext(ConfigurationContext);
   return (
     <BrowserRouter>
-      <div className='test-app'>
-        <Route path='/' exact component={Home}></Route>
-        <Route
-          path='/dashboard'
-          render={() => (
-            <Dashboard>
-              <Route path='/dashboard/users' component={UsersManagement} />
-              <Route path='/dashboard/books' component={BooksManagement} />
-            </Dashboard>
-          )}
-        ></Route>
-      </div>
+      <Route exact path='/' component={Home}></Route>
+      <Route
+        path='/dashboard'
+        render={() => (
+          <Dashboard>
+            <Route path='/dashboard/users' component={UsersManagement} />
+            <Route path='/dashboard/books' component={BooksManagement} />
+          </Dashboard>
+        )}
+      ></Route>
+      <Route
+        exact
+        path='/home'
+        render={() => (
+          <Home>
+            <Route path='/home/userInfor' component={UserInfor} />
+            <Route exact path='/home' component={HomeContent} />
+          </Home>
+        )}
+      ></Route>
     </BrowserRouter>
   );
 };

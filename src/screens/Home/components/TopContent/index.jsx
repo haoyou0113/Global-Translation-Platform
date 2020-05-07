@@ -6,7 +6,7 @@ import { Card } from 'antd';
 import './index.css';
 const { Meta } = Card;
 const { Search } = Input;
-const TopContent = () => {
+const TopContent = (props) => {
   return (
     <div className='topContent'>
       <Search
@@ -14,7 +14,7 @@ const TopContent = () => {
         placeholder='Search the documents you might be interested'
         enterButton='Search'
         size='large'
-        onSearch={(value) => console.log(value)}
+        onSearch={(value) => props.searchingBooks(value)}
       />
       <Row>
         <Col xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }}>

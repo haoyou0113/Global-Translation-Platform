@@ -13,7 +13,7 @@ const { Title } = Typography;
 
 const { Header, Footer, Sider, Content } = Layout;
 
-export const Home = () => {
+export const Home = (props) => {
   const [authority, setAuthority] = useState(false);
   const [userInfo, setUserInfo] = useState({});
 
@@ -39,14 +39,16 @@ export const Home = () => {
           />
           <Menu userInfo={userInfo} />
         </Header>
-        <Content className='homeContent'>
+        {/* <Content className='homeContent'>
           <TopContent />
 
           <Title level={2} style={{ textAlign: 'center' }}>
             Books You Might Want
           </Title>
           <Gallery />
-        </Content>
+        </Content> */}
+        <div> {props.children}</div>
+
         <Footer>
           <Link to='/dashboard/books'>
             <Button>Link to Dashboard</Button>

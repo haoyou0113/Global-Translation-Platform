@@ -1,6 +1,6 @@
 import './index.less';
 import React, { useState } from 'react';
-import { Table, Input, InputNumber, Popconfirm, Form } from 'antd';
+import { Table, Input, InputNumber, Popconfirm, Form, Card } from 'antd';
 
 const originData = [];
 
@@ -8,8 +8,9 @@ for (let i = 0; i < 100; i++) {
   originData.push({
     key: i.toString(),
     name: `Translator ${i}`,
-    age: 25,
-    address: `Brisbane QUT block ${i}`,
+    age: 25 + i,
+    address: `${i}`,
+    books_translating: `${i}`,
   });
 }
 
@@ -98,15 +99,21 @@ const UsersManagement = () => {
       editable: true,
     },
     {
-      title: 'age',
+      title: 'Award Points',
       dataIndex: 'age',
       width: '15%',
       editable: true,
     },
     {
-      title: 'address',
+      title: 'Translations Completed',
       dataIndex: 'address',
-      width: '40%',
+      width: '20%',
+      editable: true,
+    },
+    {
+      title: 'Books Translating ',
+      dataIndex: 'books_translating',
+      width: '20%',
       editable: true,
     },
     {
@@ -161,22 +168,24 @@ const UsersManagement = () => {
     };
   });
   return (
-    <Form form={form} component={false}>
-      <Table
-        components={{
-          body: {
-            cell: EditableCell,
-          },
-        }}
-        bordered
-        dataSource={data}
-        columns={mergedColumns}
-        rowClassName='editable-row'
-        pagination={{
-          onChange: cancel,
-        }}
-      />
-    </Form>
+    <Card title='Junior Translator' bordered={false}>
+      <Form form={form} component={false}>
+        <Table
+          components={{
+            body: {
+              cell: EditableCell,
+            },
+          }}
+          bordered
+          dataSource={data}
+          columns={mergedColumns}
+          rowClassName='editable-row'
+          pagination={{
+            onChange: cancel,
+          }}
+        />
+      </Form>
+    </Card>
   );
 };
 

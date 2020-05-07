@@ -3,6 +3,7 @@ import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { NavLink } from 'react-router-dom';
 import './index.css';
 
 const HomeMenu = (props) => {
@@ -14,7 +15,9 @@ const HomeMenu = (props) => {
 
   return (
     <Menu className='homeMenu' mode='horizontal'>
-      <Menu.Item key='1'>Home</Menu.Item>
+      <Menu.Item key='1' className='dashboardMenu'>
+        <NavLink to='/'>Home</NavLink>
+      </Menu.Item>
       <Menu.Item key='2'>Discover</Menu.Item>
       <Menu.Item key='3'>Translations</Menu.Item>
       <Menu.Item key='4'>About Us</Menu.Item>
@@ -27,14 +30,16 @@ const HomeMenu = (props) => {
       </Menu.Item>
 
       <span className='loginLogo'>
-        <Avatar
-          style={{
-            backgroundColor: '#87d068',
-          }}
-          icon={<UserOutlined />}
-        />
+        <NavLink to='/home/userInfor'>
+          <Avatar
+            style={{
+              backgroundColor: '#87d068',
+            }}
+            icon={<UserOutlined />}
+          />
+        </NavLink>
         Hello {username}!
-        <a style={{ marginLeft: 10 }} href='/'>
+        <a style={{ marginLeft: 10 }} href='/home/main'>
           Logout
         </a>
       </span>

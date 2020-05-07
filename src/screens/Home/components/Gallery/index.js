@@ -1,70 +1,90 @@
-import React, { Component } from 'react';
-import { Button, Card, Row, Col, Modal } from 'antd';
+import React, { Component, Fragment, useState, useEffect } from 'react';
+import { Card, Row, Col, Modal } from 'antd';
+import { Button, Layout, Typography } from 'antd';
 import { get } from '../../../../utils/request';
+import TopContent from '../TopContent';
 import './index.less';
-
-export default class Gallery extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false,
-      data: [],
-    };
-  }
-
-  onpenGallery = (item) => {
-    this.setState({
-      visible: true,
-      currentImg: '/gallery/' + item,
-    });
+const { Title } = Typography;
+const HomeContent = () => {
+  const [visible, setVisible] = useState(false);
+  const [data, setDate] = useState([]);
+  const [currentImg, setCurrentImg] = useState('');
+  const originData = [
+    '1.png',
+    '2.png',
+    '3.png',
+    '4.png',
+    '5.png',
+    '6.png',
+    '7.png',
+    '8.png',
+    '9.png',
+  ];
+  const [books, setBooks] = useState([
+    '1.png',
+    '2.png',
+    '3.png',
+    '4.png',
+    '5.png',
+    '6.png',
+    '7.png',
+    '8.png',
+    '9.png',
+  ]);
+  const onpenGallery = (item) => {
+    setCurrentImg('/gallery/' + item);
+    setVisible(true);
   };
-  componentDidMount() {
-    get('http://localhost:8080/api/origin/list').then((res) => {
-      this.setState({ data: res });
-    });
-  }
-  render() {
-    const imgs = [
-      ['1.png', '2.png', '3.png', '4.png', '5.png'],
-      ['6.png', '7.png', '8.png', '9.png', '10.png'],
-      ['11.png', '12.png', '13.png', '14.png', '15.png'],
-      ['16.png', '17.png', '18.png', '19.png', '20.png'],
-      ['21.png', '22.png', '23.png', '24.png', '25.png'],
-    ];
+  useEffect(
+    () =>
+      get('http://localhost:8080/api/origin/list').then((res) => {
+        setDate(res);
+      }),
+    []
+  );
 
-    const imgList = imgs.map((list) =>
-      list.map((item) => (
-        <Card
-          cover={
-            <img
-              src={'/gallery/' + item}
-              onClick={() => this.onpenGallery(item)}
-            />
-          }
-          style={{ marginBottom: 10 }}
-        >
-          <Card.Meta title='Library for all ' description='Love' />
-        </Card>
-      ))
-    );
-    return (
+  const imgList = books.map((item) => (
+    <Col xs={5}>
+      <Card
+        cover={
+          <img src={'/gallery/' + item} onClick={() => onpenGallery(item)} />
+        }
+        style={{ marginBottom: 10 }}
+      >
+        <Card.Meta title={'Library for All' + item} description='Love' />
+      </Card>
+    </Col>
+  ));
+
+  const searchingBooks = (value) => {
+    value ? setBooks([value.substr(-5, 5)]) : setBooks(originData);
+  };
+  return (
+    <Fragment>
+      <TopContent searchingBooks={searchingBooks} />
+      <Title level={2} style={{ textAlign: 'center' }}>
+        Books You Might Want
+      </Title>
       <div className='card-wrap'>
-        <Row gutter={10}>
-          <Col md={5}>{imgList[0]}</Col> <Col md={5}>{imgList[1]}</Col>
-          <Col md={5}>{imgList[2]}</Col> <Col md={5}>{imgList[3]}</Col>
-          <Col md={4}>{imgList[4]}</Col>
+        <Row justify='space-around' align='middle'>
+          {imgList}
         </Row>
         <Modal
           width={300}
           height={500}
-          visible={this.state.visible}
-          onCancel={() => this.setState({ visible: false })}
+          visible={visible}
+          onCancel={() => setVisible(false)}
           footer={null}
           title='Books'
         >
-          <img src={this.state.currentImg} alt='' style={{ width: '100%' }} />
+          <img src={currentImg} alt='' style={{ width: '100%' }} />
+          <p>Original Language: Chinese</p>
+          <p>Target Language: English</p>
+          <p>Deadline: 60days</p>
+          <Button>Translate</Button>
         </Modal>
       </div>
-    );
-  }
-}
+    </Fragment>
+  );
+};
+export default HomeContent;
