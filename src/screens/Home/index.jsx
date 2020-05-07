@@ -14,13 +14,9 @@ const { Title } = Typography;
 const { Header, Footer, Sider, Content } = Layout;
 
 export const Home = () => {
-<<<<<<< HEAD
   const [authority, setAuthority] = useState(true);
-=======
-  const [authority, setAuthority] = useState(false);
   const [userInfo, setUserInfo] = useState({});
->>>>>>> 7ce6e4746bda566695b1061f86ad615b5542a435
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const login = (value) => {
     post('http://localhost:8080/api/user/login', value).then((res) => {
       console.log(res);
