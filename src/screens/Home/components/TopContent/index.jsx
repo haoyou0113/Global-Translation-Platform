@@ -29,7 +29,7 @@ const TopContent = () => {
             }
           >
             <Meta
-              title='Top Three Translators'
+              title='Top Ten Popular Books'
               description='www.instagram.com'
             />
           </Card>
@@ -46,7 +46,7 @@ const TopContent = () => {
             }
           >
             <Meta
-              title='Top Three Translators'
+              title='Experienced translators'
               description='www.instagram.com'
             />
           </Card>
@@ -63,7 +63,7 @@ const TopContent = () => {
             }
           >
             <Meta
-              title='Top Three Translators'
+              title='About Us'
               description='www.instagram.com'
             />
           </Card>

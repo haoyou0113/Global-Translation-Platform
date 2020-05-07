@@ -1,24 +1,25 @@
 .homeMenu {
-    background-color: #001529;
-    color: #fff;
-    margin-left: 150px;
+    background-color: #fafafa;
+    color: #000000;
+    margin-left: 64px;
+    font-size:18px;
+    font-family:Arial, Helvetica, sans-serif;
+    width:100%;
 }
 
 .loginLogo {
-
     position: absolute !important;
     right: 20px;
-
 }
 
 .loginLogo a {
-    color: #fff !important;
+    color: #000000 !important;
 }
 
 .loginLogo span {
-    margin-right: 10px;
+    /*margin-right: 10px;*/
 }
 
 .dashboardMenu>a {
-    color: #fff !important;
+    color: #000000 !important;
 }

@@ -6,7 +6,7 @@ import { UserOutlined } from '@ant-design/icons';
 import './index.css';
 
 const HomeMenu = (props) => {
-  const { username, role } = props.userInfo.data;
+  //const { username, role } = props.userInfo.data;
 
   const handleClick = (e) => {
     console.log('click ', e);
@@ -21,7 +21,7 @@ const HomeMenu = (props) => {
       <Menu.Item
         className='dashboardMenu'
         key='5'
-        style={{ display: role === 0 ? 'inline-block' : 'none' }}
+       // style={{ display: role === 0 ? 'inline-block' : 'none' }}
       >
         <Link to='/dashboard/books'>Dashboard </Link>
       </Menu.Item>
@@ -29,12 +29,12 @@ const HomeMenu = (props) => {
       <span className='loginLogo'>
         <Avatar
           style={{
-            backgroundColor: '#87d068',
+            //backgroundColor: '#bae637',
           }}
           icon={<UserOutlined />}
         />
-        Hello {username}!
-        <a style={{ marginLeft: 10 }} href='/'>
+        {/*Hello {username}!*/}
+        <a style={{ marginLeft: 20 }} href='/'>
           Logout
         </a>
       </span>
