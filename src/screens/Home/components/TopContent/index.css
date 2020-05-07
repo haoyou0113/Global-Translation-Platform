@@ -1,4 +1,38 @@
 .homeSearch {
-    width: 70vw;
+    width: 30vw;
     margin: 0 auto
+}
+
+.topContent {
+    background-position: center center;
+    background: url('https://i1.wp.com/www.betranslated.com/wp-content/uploads/2019/09/machine-translation-google.jpg?resize=795%2C596&ssl=1');
+    visibility: visible;
+    background-size: 100% 100%;
+    opacity: 1;
+    transition: none 0s ease 0s;
+    transform: translateZ(0px);
+    height: 800px;
+    padding-top: 200px;
+
+}
+
+
+.topContent>div {
+    margin-top: 150px;
+}
+
+.topContent>span {
+    display: block;
+    margin: auto;
+}
+
+.topContent>div>span>span>input {
+    /* padding-left: 20; */
+    height: 55px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.topContent>div>span>span>span {
+    background-color: #f9c700;
 }

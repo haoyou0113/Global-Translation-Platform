@@ -14,10 +14,17 @@ const { Title } = Typography;
 const { Header, Footer, Sider, Content } = Layout;
 
 export const Home = () => {
+<<<<<<< HEAD
   const [authority, setAuthority] = useState(true);
+=======
+  const [authority, setAuthority] = useState(false);
+  const [userInfo, setUserInfo] = useState({});
+>>>>>>> 7ce6e4746bda566695b1061f86ad615b5542a435
 
   const login = (value) => {
     post('http://localhost:8080/api/user/login', value).then((res) => {
+      console.log(res);
+      setUserInfo(res);
       if (res.errno === 0) {
         setAuthority(true);
       } else {
@@ -34,12 +41,11 @@ export const Home = () => {
             className='logoTop'
             src='https://site2.staging.libraryforall.org.au/wp-content/uploads/2018/12/Library-for-All-Badge-Logo-Black-300x300.png'
           />
-          <Menu />
+          <Menu userInfo={userInfo} />
         </Header>
         <Content className='homeContent'>
-          <div className='topContent'>
-            <TopContent />
-          </div>
+          <TopContent />
+
           <Title level={2} style={{ textAlign: 'center' }}>
             Books You Might Want
           </Title>
