@@ -14,9 +14,9 @@ const { Title } = Typography;
 const { Header, Footer, Sider, Content } = Layout;
 
 export const Home = (props) => {
-  const [authority, setAuthority] = useState(false);
+  const [authority, setAuthority] = useState(true);
   const [userInfo, setUserInfo] = useState({});
-
+  console.log(props);
   const login = (value) => {
     post('http://localhost:8080/api/user/login', value).then((res) => {
       console.log(res);
@@ -39,15 +39,7 @@ export const Home = (props) => {
           />
           <Menu userInfo={userInfo} />
         </Header>
-        {/* <Content className='homeContent'>
-          <TopContent />
-
-          <Title level={2} style={{ textAlign: 'center' }}>
-            Books You Might Want
-          </Title>
-          <Gallery />
-        </Content> */}
-        <div> {props.children}</div>
+        <Content className='homeContent'>{props.children}</Content>
 
         <Footer>
           <Link to='/dashboard/books'>

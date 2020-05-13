@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import './index.css';
 
 const HomeMenu = (props) => {
-  const { username, role } = props.userInfo.data;
+  // const { username, role } = props.userInfo.data;
 
   const handleClick = (e) => {
     console.log('click ', e);
@@ -16,18 +16,18 @@ const HomeMenu = (props) => {
   return (
     <Menu className='homeMenu' mode='horizontal'>
       <Menu.Item key='1' className='dashboardMenu'>
-        <NavLink to='/'>Home</NavLink>
+        <NavLink to='/home'>Home</NavLink>
       </Menu.Item>
       <Menu.Item key='2'>Discover</Menu.Item>
       <Menu.Item key='3'>Translations</Menu.Item>
       <Menu.Item key='4'>About Us</Menu.Item>
-      <Menu.Item
+      {/* <Menu.Item
         className='dashboardMenu'
         key='5'
         style={{ display: role === 0 ? 'inline-block' : 'none' }}
       >
         <Link to='/dashboard/books'>Dashboard </Link>
-      </Menu.Item>
+      </Menu.Item> */}
 
       <span className='loginLogo'>
         <NavLink to='/home/userInfor'>
@@ -38,7 +38,7 @@ const HomeMenu = (props) => {
             icon={<UserOutlined />}
           />
         </NavLink>
-        Hello {username}!
+        {/* Hello {username}! */}
         <a style={{ marginLeft: 10 }} href='/home/main'>
           Logout
         </a>
