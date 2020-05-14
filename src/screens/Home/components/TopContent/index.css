@@ -11,8 +11,8 @@
     opacity: 1;
     transition: none 0s ease 0s;
     transform: translateZ(0px);
-    height: 800px;
-    padding-top: 200px;
+    height: 700px;
+    padding-top: 80px;
 
 }
 
@@ -34,5 +34,5 @@
 }
 
 .topContent>div>span>span>span {
-    background-color: #f9c700;
+    background-color: #001529;
 }

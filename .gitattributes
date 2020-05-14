@@ -1,0 +1,5 @@
+/Users/you/SE4/711/gro/GTP/global-translation-platform/src/screens/Home/components/Gallery/Busy[[:space:]]Little.pdf filter=lfs diff=lfs merge=lfs -text
+/Users/you/SE4/711/gro/GTP/global-translation-platform/src/screens/Home/components/Gallery/How[[:space:]]The[[:space:]]Rooster[[:space:]]Found[[:space:]]His[[:space:]]Sound.pdf filter=lfs diff=lfs merge=lfs -text
+/Users/you/SE4/711/gro/GTP/global-translation-platform/src/screens/Home/components/Gallery/Tahlia[[:space:]]The[[:space:]]Tortoise[[:space:]]Finds[[:space:]]An[[:space:]]Umbrella.pdf filter=lfs diff=lfs merge=lfs -text
+src/screens/Home/components/Gallery/Busy[[:space:]]Little.pdf filter=lfs diff=lfs merge=lfs -text
+*.pdf filter=lfs diff=lfs merge=lfs -text

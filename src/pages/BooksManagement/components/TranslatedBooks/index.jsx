@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { get } from '../../../../utils/request';
 import { Table } from 'antd';
+import { NavLink } from 'react-router-dom';
 
 const TranslatedBooks = () => {
   const [translatedBooks, setTranslatedBooks] = useState([]);
@@ -13,22 +14,22 @@ const TranslatedBooks = () => {
         width: 200,
       },
       {
-        title: 'Author',
-        dataIndex: 'author',
-        width: 100,
+        title: 'Original language',
+        dataIndex: 'original_language',
+        width: 200,
       },
       {
-        title: 'Category',
-        dataIndex: 'category',
-        width: 100,
+        title: 'Existing Version',
+        dataIndex: 'existing_version',
+        width: 200,
       },
       {
-        title: 'Publisher',
+        title: 'Translator',
         dataIndex: 'publisher',
-        width: 100,
+        width: 200,
       },
       {
-        title: 'Translation Number',
+        title: 'Reviewer',
         dataIndex: 'trans_num',
         width: 200,
       },
@@ -39,9 +40,9 @@ const TranslatedBooks = () => {
           <div>
             <a>Delete</a>
             <a> </a>
-            <a>Publish</a>
-            <a> </a>
-            <a>Review</a>
+            <a>
+              <NavLink to='/home/translate?Review'>Review</NavLink>{' '}
+            </a>
           </div>
         ),
       },

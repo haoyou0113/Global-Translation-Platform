@@ -1,0 +1,9 @@
+.userInfor {
+    height: 750px;
+    padding: 110px 130px;
+}
+
+.userInfor>div:first-child {
+    margin: auto;
+    margin-bottom: 50px;
+}

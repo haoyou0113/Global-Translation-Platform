@@ -32,7 +32,7 @@ export const Dashboard = (props) => {
         </Col>
       </Row>
 
-      <Link to='/'>
+      <Link to='/home/main'>
         <Button
           variant='contained'
           color='primary'

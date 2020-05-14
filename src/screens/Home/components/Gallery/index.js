@@ -1,70 +1,207 @@
-import React, { Component } from 'react';
-import { Button, Card, Row, Col, Modal } from 'antd';
+import React, { Component, Fragment, useState, useEffect } from 'react';
+import { Card, Row, Col, Modal } from 'antd';
+import { Button, Layout, Typography, Pagination } from 'antd';
 import { get } from '../../../../utils/request';
-import './index.less';
+import TopContent from '../TopContent';
+import { Document, Page, pdfjs } from 'react-pdf';
+import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { Select, Space } from 'antd';
+import './index.css';
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+const { Option } = Select;
 
-export default class Gallery extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false,
-      data: [],
-    };
-  }
+const { Title } = Typography;
+const HomeContent = () => {
+  const [visible, setVisible] = useState(false);
+  const [data, setDate] = useState([]);
+  const [currentImg, setCurrentImg] = useState('');
 
-  onpenGallery = (item) => {
-    this.setState({
-      visible: true,
-      currentImg: '/gallery/' + item,
-    });
+  const [books, setBooks] = useState([
+    {
+      key: 1,
+      url: 'Busy Little.pdf',
+      title: 'Busy Little',
+      index: 'busy_little',
+      originLanguage: 'English',
+      expectLanguage: 'Lao',
+      deadline: 60,
+    },
+    // {
+    //   key: 2,
+    //   url: 'How The Rooster Found His Sound.pdf',
+    //   title: 'How The Rooster Found His Sound',
+    //   index: 'how_the_rooster_found_his_sound',
+    //   originLanguage: 'English',
+    //   expectLanguage: 'Lao',
+    //   deadline: 60,
+    // },
+    // {
+    //   key: 3,
+    //   url: 'Tahlia The Tortoise Finds An Umbrella.pdf',
+    //   title: 'Tahlia The Tortoise Finds An Umbrella',
+    //   index: 'tahli_the_tortoise_finds_an_umbrella',
+    //   originLanguage: 'English',
+    //   expectLanguage: 'Lao',
+    //   deadline: 60,
+    // },
+  ]);
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  const onpenGallery = (item) => {
+    setCurrentImg('/gallery/' + item);
+    setVisible(true);
   };
-  componentDidMount() {
-    get('http://localhost:8080/api/origin/list').then((res) => {
-      this.setState({ data: res });
-    });
-  }
-  render() {
-    const imgs = [
-      ['1.png', '2.png', '3.png', '4.png', '5.png'],
-      ['6.png', '7.png', '8.png', '9.png', '10.png'],
-      ['11.png', '12.png', '13.png', '14.png', '15.png'],
-      ['16.png', '17.png', '18.png', '19.png', '20.png'],
-      ['21.png', '22.png', '23.png', '24.png', '25.png'],
-    ];
+  // useEffect(
+  //   () =>
+  //     get('http://localhost:8080/api/origin/list').then((res) => {
+  //       setDate(res);
+  //     }),
+  //   []
+  // );
 
-    const imgList = imgs.map((list) =>
-      list.map((item) => (
-        <Card
-          cover={
-            <img
-              src={'/gallery/' + item}
-              onClick={() => this.onpenGallery(item)}
-            />
-          }
-          style={{ marginBottom: 10 }}
-        >
-          <Card.Meta title='Library for all ' description='Love' />
-        </Card>
-      ))
-    );
-    return (
-      <div className='card-wrap'>
-        <Row gutter={10}>
-          <Col md={5}>{imgList[0]}</Col> <Col md={5}>{imgList[1]}</Col>
-          <Col md={5}>{imgList[2]}</Col> <Col md={5}>{imgList[3]}</Col>
-          <Col md={4}>{imgList[4]}</Col>
-        </Row>
-        <Modal
-          width={300}
-          height={500}
-          visible={this.state.visible}
-          onCancel={() => this.setState({ visible: false })}
-          footer={null}
-          title='Books'
-        >
-          <img src={this.state.currentImg} alt='' style={{ width: '100%' }} />
-        </Modal>
-      </div>
-    );
+  // const imgList = books.map((item) => (
+  //   <Col xs={5}>
+  //     <Card
+  //       cover={
+  //         <Document
+  //           onClick={() => onpenGallery(item)}
+  //           file={`./${item}`}
+  //           onLoadSuccess={onDocumentLoadSuccess}
+  //         >
+  //           <Page pageNumber={pageNumber} />
+  //         </Document>
+  //       }
+  //       style={{ marginBottom: 10 }}
+  //     >
+  //       <Card.Meta title={'Library for All' + item} description='Love' />
+  //     </Card>
+  //   </Col>
+  // ));
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
+  };
+  const searchingBooks = (value) => {
+    // value ? setBooks([value.substr(-5, 5)]) : setBooks(originData);
+  };
+  const onChangePage = (page) => {
+    setPageNumber(page);
+  };
+  function onChange(value) {
+    console.log(`selected ${value}`);
   }
-}
+
+  function onBlur() {
+    console.log('blur');
+  }
+
+  function onFocus() {
+    console.log('focus');
+  }
+
+  function onSearch(val) {
+    console.log('search:', val);
+  }
+
+  return (
+    <Fragment>
+      <TopContent searchingBooks={searchingBooks} />
+      <Title level={2} style={{ textAlign: 'center' }}>
+        Books You Might Want
+      </Title>
+      <div className='space-align-container' style={{ margin: 20 }}>
+        <div className='space-align-block'>
+          <Space align='center'>
+            <label htmlFor=''>List by Original Language</label>
+            <Select
+              allowClear
+              showSearch
+              style={{ width: 200 }}
+              placeholder='Select a Language'
+              optionFilterProp='children'
+              onChange={onChange}
+              onFocus={onFocus}
+              onBlur={onBlur}
+              onSearch={onSearch}
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              <Option value='jack'>English</Option>
+              <Option value='lucy'>Chinese</Option>
+              <Option value='tom'>Japanese</Option>
+            </Select>
+            <span className='mock-block'></span>
+          </Space>
+        </div>
+        <div className='space-align-block'>
+          <Space align='center'>
+            <label htmlFor=''>List by Target Language</label>
+            <Select
+              allowClear
+              showSearch
+              style={{ width: 200 }}
+              placeholder='Select a Language'
+              optionFilterProp='children'
+              onChange={onChange}
+              onFocus={onFocus}
+              onBlur={onBlur}
+              onSearch={onSearch}
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              <Option value='jack'>English</Option>
+              <Option value='lucy'>Chinese</Option>
+              <Option value='tom'>Japanese</Option>
+            </Select>
+          </Space>
+        </div>
+      </div>
+
+      <div className='card-wrap'>
+        {books.map((item) => (
+          <Fragment>
+            <Row justify='space-around' align='middle' key={item.key}>
+              <Col xs={5}>
+                <Card
+                  cover={
+                    <Fragment>
+                      <Document
+                        onClick={() => setVisible(true)}
+                        file={require(`./${item.url}`)}
+                        onLoadSuccess={onDocumentLoadSuccess}
+                      >
+                        <Page pageNumber={pageNumber} />
+                      </Document>
+                      <Pagination
+                        total={numPages}
+                        showTotal={(total) => ` ${total} pages`}
+                        current={pageNumber}
+                        pageSize={1}
+                        size='small'
+                        onChange={onChangePage}
+                      />
+                    </Fragment>
+                  }
+                  style={{ marginBottom: 10, with: '20vh' }}
+                >
+                  <Card.Meta title={item.title} />
+                  <p></p>
+                  <p>Original Language:{item.originLanguage}</p>
+                  <p>Target Language: {item.expectLanguage}</p>
+                  <p>Deadline: {item.deadline}days</p>
+                  <NavLink to={`/home/translate?${item.index}`}>
+                    <Button>translate</Button>
+                  </NavLink>
+                </Card>
+              </Col>
+            </Row>
+          </Fragment>
+        ))}
+      </div>
+    </Fragment>
+  );
+};
+export default HomeContent;

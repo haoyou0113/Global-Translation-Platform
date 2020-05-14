@@ -7,17 +7,16 @@ import Gallery from './components/Gallery';
 import Menu from './components/Menu';
 import TopContent from './components/TopContent';
 import { get, post } from '../../utils/request';
-import Login from '../../pages/login';
+import Login from '../../pages/Login';
 import './index.css';
 const { Title } = Typography;
 
 const { Header, Footer, Sider, Content } = Layout;
 
-export const Home = () => {
-  const [authority, setAuthority] = useState(true);
+export const Home = (props) => {
+  const [authority, setAuthority] = useState(false);
   const [userInfo, setUserInfo] = useState({});
-  const [search, setSearch] = useState(""); /////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  console.log(props);
   const login = (value) => {
     post('http://localhost:8080/api/user/login', value).then((res) => {
       console.log(res);
@@ -40,15 +39,7 @@ export const Home = () => {
           />
           <Menu userInfo={userInfo} />
         </Header>
-        <Content className='homeContent'>
-          <TopContent onSearch={setSearch}/>
-          console.log("-=-=-=-=",search)
-
-          <Title level={2} style={{ textAlign: 'center' }}>
-            Books You Might Want
-          </Title>
-          <Gallery />
-        </Content>
+        <Content className='homeContent'>{props.children}</Content>
         <Footer>
           <Link to='/dashboard/books'>
             <Button>Link to Dashboard</Button>
