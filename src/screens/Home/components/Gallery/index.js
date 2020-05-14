@@ -6,9 +6,11 @@ import TopContent from '../TopContent';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import { Select, Space } from 'antd';
+import './index.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+const { Option } = Select;
 
-// const pdfurl = require('./20_Busy.pdf');
 const { Title } = Typography;
 const HomeContent = () => {
   const [visible, setVisible] = useState(false);
@@ -86,12 +88,78 @@ const HomeContent = () => {
   const onChangePage = (page) => {
     setPageNumber(page);
   };
+  function onChange(value) {
+    console.log(`selected ${value}`);
+  }
+
+  function onBlur() {
+    console.log('blur');
+  }
+
+  function onFocus() {
+    console.log('focus');
+  }
+
+  function onSearch(val) {
+    console.log('search:', val);
+  }
+
   return (
     <Fragment>
       <TopContent searchingBooks={searchingBooks} />
       <Title level={2} style={{ textAlign: 'center' }}>
         Books You Might Want
       </Title>
+      <div className='space-align-container' style={{ margin: 20 }}>
+        <div className='space-align-block'>
+          <Space align='center'>
+            <label htmlFor=''>List by Original Language</label>
+            <Select
+              allowClear
+              showSearch
+              style={{ width: 200 }}
+              placeholder='Select a Language'
+              optionFilterProp='children'
+              onChange={onChange}
+              onFocus={onFocus}
+              onBlur={onBlur}
+              onSearch={onSearch}
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              <Option value='jack'>English</Option>
+              <Option value='lucy'>Chinese</Option>
+              <Option value='tom'>Japanese</Option>
+            </Select>
+            <span className='mock-block'></span>
+          </Space>
+        </div>
+        <div className='space-align-block'>
+          <Space align='center'>
+            <label htmlFor=''>List by Target Language</label>
+            <Select
+              allowClear
+              showSearch
+              style={{ width: 200 }}
+              placeholder='Select a Language'
+              optionFilterProp='children'
+              onChange={onChange}
+              onFocus={onFocus}
+              onBlur={onBlur}
+              onSearch={onSearch}
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              <Option value='jack'>English</Option>
+              <Option value='lucy'>Chinese</Option>
+              <Option value='tom'>Japanese</Option>
+            </Select>
+          </Space>
+        </div>
+      </div>
+
       <div className='card-wrap'>
         {books.map((item) => (
           <Fragment>
@@ -117,15 +185,16 @@ const HomeContent = () => {
                       />
                     </Fragment>
                   }
-                  style={{ marginBottom: 10 }}
+                  style={{ marginBottom: 10, with: '20vh' }}
                 >
+                  <Card.Meta title={item.title} />
+                  <p></p>
                   <p>Original Language:{item.originLanguage}</p>
                   <p>Target Language: {item.expectLanguage}</p>
                   <p>Deadline: {item.deadline}days</p>
                   <NavLink to={`/home/translate?${item.index}`}>
                     <Button>translate</Button>
                   </NavLink>
-                  <Card.Meta title={item.title} />
                 </Card>
               </Col>
             </Row>

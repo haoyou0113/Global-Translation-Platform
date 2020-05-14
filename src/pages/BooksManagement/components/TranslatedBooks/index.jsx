@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { get } from '../../../../utils/request';
 import { Table } from 'antd';
+import { NavLink } from 'react-router-dom';
 
 const TranslatedBooks = () => {
   const [translatedBooks, setTranslatedBooks] = useState([]);
@@ -39,7 +40,9 @@ const TranslatedBooks = () => {
           <div>
             <a>Delete</a>
             <a> </a>
-            <a>Review</a>
+            <a>
+              <NavLink to='/home/translate?Review'>Review</NavLink>{' '}
+            </a>
           </div>
         ),
       },

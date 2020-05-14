@@ -14,7 +14,7 @@ const { Title } = Typography;
 const { Header, Footer, Sider, Content } = Layout;
 
 export const Home = (props) => {
-  const [authority, setAuthority] = useState(true);
+  const [authority, setAuthority] = useState(false);
   const [userInfo, setUserInfo] = useState({});
   console.log(props);
   const login = (value) => {

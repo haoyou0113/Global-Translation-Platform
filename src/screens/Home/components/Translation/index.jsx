@@ -4,14 +4,16 @@ import { NavLink } from 'react-router-dom';
 const { Title, Paragraph } = Typography;
 const { TextArea } = Input;
 
-const Translation = () => {
+const Translation = (props) => {
+  const purpose = props.location.search.substr(1);
   const [status, setStatus] = useState(false);
   const submit = () => {
+    alert('Success Submit');
     setStatus(true);
   };
   return (
     <div>
-      <Title>Workbench</Title>
+      <Title>Workbench for {purpose}</Title>
       <Title level={2}>Translation</Title>{' '}
       <Paragraph ellipsis={{ rows: 3, expandable: true }}>
         Ant Design, a design language for background applications, is refined by
@@ -31,7 +33,7 @@ const Translation = () => {
         type='success'
       />{' '}
       <Button onClick={submit}>
-        Submit {/* <NavLink to='/home/main'>Submit </NavLink> */}
+        <NavLink to='/home/main'>Submit </NavLink>
       </Button>
       <Button onClick={submit}>
         <NavLink to='/home/main'>Cancel </NavLink>
