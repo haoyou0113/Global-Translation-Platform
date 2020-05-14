@@ -40,7 +40,6 @@ export const Home = (props) => {
           <Menu userInfo={userInfo} />
         </Header>
         <Content className='homeContent'>{props.children}</Content>
-
         <Footer>
           <Link to='/dashboard/books'>
             <Button>Link to Dashboard</Button>

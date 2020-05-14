@@ -16,7 +16,7 @@ const HomeMenu = (props) => {
   return (
     <Menu className='homeMenu' mode='horizontal'>
       <Menu.Item key='1' className='dashboardMenu'>
-        <NavLink to='/home'>Home</NavLink>
+        <NavLink to='/home/main'>Home</NavLink>
       </Menu.Item>
       <Menu.Item key='2'>Discover</Menu.Item>
       <Menu.Item key='3'>Translations</Menu.Item>
