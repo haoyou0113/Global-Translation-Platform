@@ -16,6 +16,7 @@ const { Header, Footer, Sider, Content } = Layout;
 export const Home = () => {
   const [authority, setAuthority] = useState(true);
   const [userInfo, setUserInfo] = useState({});
+  const [search, setSearch] = useState(""); /////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const login = (value) => {
     post('http://localhost:8080/api/user/login', value).then((res) => {
@@ -40,7 +41,8 @@ export const Home = () => {
           <Menu userInfo={userInfo} />
         </Header>
         <Content className='homeContent'>
-          <TopContent />
+          <TopContent onSearch={setSearch}/>
+          console.log("-=-=-=-=",search)
 
           <Title level={2} style={{ textAlign: 'center' }}>
             Books You Might Want
