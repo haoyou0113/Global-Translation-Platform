@@ -9,6 +9,8 @@ import TopContent from './components/TopContent';
 import { get, post } from '../../utils/request';
 import Login from '../../pages/Login';
 import './index.css';
+
+import Rigester from '../../pages/Login';
 const { Title } = Typography;
 
 const { Header, Footer, Sider, Content } = Layout;
