@@ -1,3 +1,4 @@
+
 import RegistrationForm from './Rigester';
 import React, { Fragment, useState } from '../../../node_modules/react';
 import { Form, Input, Button, Checkbox } from '../../../node_modules/antd';
@@ -15,6 +16,11 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+
+
+import React, { Fragment, useState } from '../../../node_modules/react';
+import { Form, Input, Button } from '../../../node_modules/antd';
+import RegistrationForm from './Rigester';
 
 
 
@@ -67,6 +73,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login(props) {
   const classes = useStyles();
+
+const Login = (props) => {
+
   const [reg, setReg] = useState(false);
   const onFinish = (values) => {
     console.log(values);
@@ -81,6 +90,7 @@ export default function Login(props) {
 
   return (
     <Fragment>
+
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
@@ -138,6 +148,42 @@ export default function Login(props) {
         </div>
       </Grid>
     </Grid>
+
+      <RegistrationForm reg={reg} regSwitch={regSwitch} />
+      <Form
+        style={{ display: reg ? 'none' : 'block' }}
+        {...layout}
+        name='basic'
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+      >
+        <Form.Item
+          label='Username'
+          name='username'
+          rules={[{ required: true, message: 'Please input your username!' }]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label='Password'
+          name='password'
+          rules={[{ required: true, message: 'Please input your password!' }]}
+        >
+          <Input.Password />
+        </Form.Item>
+
+        <Form.Item {...tailLayout}>
+          <Button type='primary' htmlType='submit'>
+            Submit
+          </Button>
+          <Button onClick={regSwitch} style={{ marginLeft: 5 }}>
+            {' '}
+            Register
+          </Button>
+        </Form.Item>
+      </Form>
+
     </Fragment>
   );
 }
