@@ -11,6 +11,9 @@ import Translation from './screens/Home/components/Translation';
 import Login from './pages/login';
 import './App.css';
 
+import Rigester from './pages/Login';  //追加分
+// import { Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
+
 export default class ERouter extends React.Component {
   render() {
     return (
@@ -22,7 +25,8 @@ export default class ERouter extends React.Component {
               path='/home'
               render={() => (
                 <Home>
-                  <Switch>
+                  <Switch> 
+                    {/* <Route path='/register' component={Rigester} />  */}
                     <Route path='/home/main' component={HomeContent} />
                     <Route path='/home/userInfor' component={UserInfor} />
                     <Route path='/home/translate' component={Translation} />

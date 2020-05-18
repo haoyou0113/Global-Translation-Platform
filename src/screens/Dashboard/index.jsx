@@ -10,6 +10,10 @@ import NavLeft from '../../components/navLeft';
 import './index.css';
 import '../../common/common.less';
 
+//import { StarOutlined, StarFilled, StarTwoTone } from '@ant-design/icons';　//added for the icons
+// import { MessageOutlined } from '@ant-design/icons';
+// <MessageOutlined style={{ fontSize: '16px', color: '#08c' }} />
+
 const useStyles = makeStyles((theme) => ({
   button: {
     marginBottom: theme.spacing(1),
