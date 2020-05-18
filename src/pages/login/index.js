@@ -16,12 +16,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> master
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
@@ -162,7 +156,4 @@ export default function Login(props) {
     </Fragment>
   );
 }
-<<<<<<< HEAD
-}
-=======
->>>>>>> master
+
