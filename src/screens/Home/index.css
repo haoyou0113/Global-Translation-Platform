@@ -1,19 +1,21 @@
 .logoTop {
-    position: absolute;
-    display: inline;
-    background-color: #fff;
-    height: 64px;
-    width: 64px;
-    opacity: 1;
+  position: absolute;
+  display: inline;
+  background-color: #fff;
+  height: 64px;
+  width: 64px;
+  opacity: 1;
 }
 
-
-
 .loginCom {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    padding: 150px
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  padding: 150px;
+}
+
+.ant-layout-header {
+  padding: 0 !important;
 }
