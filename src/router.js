@@ -8,7 +8,7 @@ import UsersManagement from './pages/UserManagement';
 import UserInfor from './pages/UserInfor';
 import HomeContent from './screens/Home/components/Gallery';
 import Translation from './screens/Home/components/Translation';
-import Login from './pages/Login';
+import Login from './pages/login';
 import './App.css';
 
 import Rigester from './pages/Login';  //追加分

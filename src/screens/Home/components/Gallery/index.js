@@ -1,5 +1,7 @@
 import React, { Component, Fragment, useState, useEffect } from 'react';
 import { Card, Row, Col, Modal } from 'antd';
+import { Input } from 'antd';
+
 import { Button, Layout, Typography, Pagination } from 'antd';
 import { get } from '../../../../utils/request';
 import TopContent from '../TopContent';
@@ -9,10 +11,11 @@ import { NavLink } from 'react-router-dom';
 import { Select, Space } from 'antd';
 import './index.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-const { Option } = Select;
 
+const { Option } = Select;
+const { Search } = Input;
 const { Title } = Typography;
-const HomeContent = () => {
+const HomeContent = (props) => {
   const [visible, setVisible] = useState(false);
   const [data, setDate] = useState([]);
   const [currentImg, setCurrentImg] = useState('');
@@ -106,10 +109,17 @@ const HomeContent = () => {
 
   return (
     <Fragment>
-      <TopContent searchingBooks={searchingBooks} />
+      <TopContent className='Gallery' searchingBooks={searchingBooks} />
       <Title level={2} style={{ textAlign: 'center' }}>
         Books You Might Want
       </Title>
+      <Search
+        className='homeSearch'
+        placeholder='Search the documents you might be interested'
+        enterButton='Search'
+        size='large'
+        onSearch={(value) => props.searchingBooks(value)}
+      />
       <div className='space-align-container' style={{ margin: 20 }}>
         <div className='space-align-block'>
           <Space align='center'>

@@ -1,24 +1,27 @@
 .homeMenu {
-    background-color: #001529;
-    color: #fff;
-    margin-left: 150px;
+    background-color: #fafafa;
+    color: #1f1f1f;
+    margin-left: 50px;
+    font-family: sans-serif;
+    font: 18px/1.5 Arial, Helvetica,sans-serif;
 }
 
 .loginLogo {
 
     position: absolute !important;
-    right: 20px;
+    right: 10px;
 
 }
 
 .loginLogo a {
-    color: #fff !important;
+    color: #1f1f1f !important;
 }
 
 .loginLogo span {
     margin-right: 10px;
 }
 
+
 .dashboardMenu>a {
-    color: #fff !important;
+    color: #1f1f1f !important;
 }

@@ -1,11 +1,8 @@
-.homeSearch {
-    width: 30vw;
-    margin: 0 auto
-}
-
 .topContent {
     background-position: center center;
-    background: url('https://i1.wp.com/www.betranslated.com/wp-content/uploads/2019/09/machine-translation-google.jpg?resize=795%2C596&ssl=1');
+    background: linear-gradient(#fff1f0, #91d5ff);
+    /*background:#F6F6F6;*/
+    /*background: url('https://i1.wp.com/www.betranslated.com/wp-content/uploads/2019/09/machine-translation-google.jpg?resize=795%2C596&ssl=1');!}*/
     visibility: visible;
     background-size: 100% 100%;
     opacity: 1;
