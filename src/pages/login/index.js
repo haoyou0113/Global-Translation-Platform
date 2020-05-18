@@ -18,10 +18,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 
-import React, { Fragment, useState } from '../../../node_modules/react';
-import { Form, Input, Button } from '../../../node_modules/antd';
-import RegistrationForm from './Rigester';
-
 
 
 const layout = {
@@ -187,5 +183,4 @@ const Login = (props) => {
     </Fragment>
   );
 }
-
-
+}
