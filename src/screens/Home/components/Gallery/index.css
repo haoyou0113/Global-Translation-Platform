@@ -1,6 +1,16 @@
+.homeSearch {
+    width: 30vw;
+    margin: 0px auto;
+    margin-left:35%;
+}
+
+.Gallery {
+    background: linear-gradient(#ffccc7, #91d5ff);
+}
 .space-align-container {
     display: flex;
     justify-content: center;
+    /*background: linear-gradient(#ffccc7, #91d5ff);*/
 }
 
 .react-pdf__Page__canvas {

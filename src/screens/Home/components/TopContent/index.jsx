@@ -1,21 +1,12 @@
 import React from 'react';
-import { Input } from 'antd';
 import { Row, Col } from 'antd';
 import { Card } from 'antd';
-
 import './index.css';
 const { Meta } = Card;
-const { Search } = Input;
 const TopContent = (props) => {
   return (
     <div className='topContent'>
-      <Search
-        className='homeSearch'
-        placeholder='Search the documents you might be interested'
-        enterButton='Search'
-        size='large'
-        onSearch={(value) => props.searchingBooks(value)}
-      />
+     
       <Row>
         <Col xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }}>
           <Card
