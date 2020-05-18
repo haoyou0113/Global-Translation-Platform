@@ -7,7 +7,7 @@ import Gallery from './components/Gallery';
 import Menu from './components/Menu';
 import TopContent from './components/TopContent';
 import { get, post } from '../../utils/request';
-import Login from '../../pages/login';
+import Login from '../../pages/Login';
 import './index.css';
 
 import Rigester from '../../pages/Login';
