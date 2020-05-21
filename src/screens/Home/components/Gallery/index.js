@@ -2,7 +2,7 @@ import React, { Component, Fragment, useState, useEffect } from 'react';
 import { Card, Row, Col, Modal } from 'antd';
 import { Input } from 'antd';
 
-import { Button, Layout, Typography, Form } from 'antd';
+import { Button, Layout, Typography, Form, Rate } from 'antd';
 import { get } from '../../../../utils/request';
 import TopContent from '../TopContent';
 import { Document, Page, pdfjs } from 'react-pdf';
@@ -168,6 +168,9 @@ const HomeContent = (props) => {
               <Option value='lucy'>Chinese</Option>
               <Option value='tom'>Japanese</Option>
             </Select>
+          </Form.Item>
+          <Form.Item name='rate' label='Translation Level'>
+            <Rate defaultValue={1} />
           </Form.Item>
           <Form.Item
             name='select-multiple'

@@ -117,9 +117,10 @@ export default function BookDetails() {
           2020-07-24 18:00:00
         </Descriptions.Item>
         <Descriptions.Item label='Status' span={3}>
-          <Badge status='processing' text='Running' />
+          <Badge status='processing' text='Translating' />
         </Descriptions.Item>
         <Descriptions.Item label='Count of A4'>22</Descriptions.Item>
+        <Descriptions.Item label='Rewards Point'>15</Descriptions.Item>
 
         <Descriptions.Item label='Keywords'>
           dog; size; animal; activities
