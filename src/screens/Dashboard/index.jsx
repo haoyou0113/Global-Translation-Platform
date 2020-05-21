@@ -24,7 +24,6 @@ export const Dashboard = (props) => {
 
   return (
     <div>
-      <Typography variant='h3'>{'This is Dashboard page'}</Typography>
       <Row className='container'>
         <Col span='4' className='nav-left'>
           <NavLeft />

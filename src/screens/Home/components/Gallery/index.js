@@ -2,13 +2,14 @@ import React, { Component, Fragment, useState, useEffect } from 'react';
 import { Card, Row, Col, Modal } from 'antd';
 import { Input } from 'antd';
 
-import { Button, Layout, Typography, Pagination } from 'antd';
+import { Button, Layout, Typography, Form } from 'antd';
 import { get } from '../../../../utils/request';
 import TopContent from '../TopContent';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { Select, Space } from 'antd';
+
 import './index.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -24,30 +25,35 @@ const HomeContent = (props) => {
     {
       key: 1,
       url: 'Busy Little.pdf',
+      img:
+        'https://images-na.ssl-images-amazon.com/images/I/51%2BoLSpnLtL._SX351_BO1,204,203,200_.jpg',
       title: 'Busy Little',
       index: 'busy_little',
       originLanguage: 'English',
       expectLanguage: 'Lao',
       deadline: 60,
     },
-    // {
-    //   key: 2,
-    //   url: 'How The Rooster Found His Sound.pdf',
-    //   title: 'How The Rooster Found His Sound',
-    //   index: 'how_the_rooster_found_his_sound',
-    //   originLanguage: 'English',
-    //   expectLanguage: 'Lao',
-    //   deadline: 60,
-    // },
-    // {
-    //   key: 3,
-    //   url: 'Tahlia The Tortoise Finds An Umbrella.pdf',
-    //   title: 'Tahlia The Tortoise Finds An Umbrella',
-    //   index: 'tahli_the_tortoise_finds_an_umbrella',
-    //   originLanguage: 'English',
-    //   expectLanguage: 'Lao',
-    //   deadline: 60,
-    // },
+    {
+      key: 2,
+      url: 'How The Rooster Found His Sound.pdf',
+      img: 'https://images-na.ssl-images-amazon.com/images/I/61rEBeU6uML.jpg',
+      title: 'How The Rooster Found His Sound',
+      index: 'how_the_rooster_found_his_sound',
+      originLanguage: 'English',
+      expectLanguage: 'Lao',
+      deadline: 60,
+    },
+    {
+      key: 3,
+      url: 'Tahlia The Tortoise Finds An Umbrella.pdf',
+      img:
+        'https://www.booktopia.com.au/http_coversbooktopiacomau/big/9781925863963/4938/tahlia-the-tortoise-finds-an-umbrella.jpg',
+      title: 'Tahlia The Tortoise Finds An Umbrella',
+      index: 'tahli_the_tortoise_finds_an_umbrella',
+      originLanguage: 'English',
+      expectLanguage: 'Lao',
+      deadline: 60,
+    },
   ]);
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
@@ -120,10 +126,10 @@ const HomeContent = (props) => {
         size='large'
         onSearch={(value) => props.searchingBooks(value)}
       />
+
       <div className='space-align-container' style={{ margin: 20 }}>
-        <div className='space-align-block'>
-          <Space align='center'>
-            <label htmlFor=''>List by Original Language</label>
+        <Form layout='inline'>
+          <Form.Item name='select' label='Original Language' hasFeedback>
             <Select
               allowClear
               showSearch
@@ -142,12 +148,8 @@ const HomeContent = (props) => {
               <Option value='lucy'>Chinese</Option>
               <Option value='tom'>Japanese</Option>
             </Select>
-            <span className='mock-block'></span>
-          </Space>
-        </div>
-        <div className='space-align-block'>
-          <Space align='center'>
-            <label htmlFor=''>List by Target Language</label>
+          </Form.Item>{' '}
+          <Form.Item name='select' label='Target Language' hasFeedback>
             <Select
               allowClear
               showSearch
@@ -166,18 +168,45 @@ const HomeContent = (props) => {
               <Option value='lucy'>Chinese</Option>
               <Option value='tom'>Japanese</Option>
             </Select>
-          </Space>
-        </div>
+          </Form.Item>
+          <Form.Item
+            name='select-multiple'
+            label='Books Category'
+            rules={[
+              {
+                required: true,
+                message: 'Please select the type of book!',
+                type: 'array',
+              },
+            ]}
+          >
+            <Select mode='multiple' placeholder='Please select book type'>
+              <Option value='fiction'>Fiction</Option>
+              <Option value='story'>Story</Option>
+              <Option value='children'>Children</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
+            <Button type='primary' htmlType='submit'>
+              Filter
+            </Button>
+          </Form.Item>
+        </Form>
       </div>
 
-      <div className='card-wrap'>
-        {books.map((item) => (
-          <Fragment>
-            <Row justify='space-around' align='middle' key={item.key}>
-              <Col xs={5}>
-                <Card
-                  cover={
-                    <Fragment>
+      <div className='site-card-wrapper'>
+        <Fragment>
+          <Row gutter={16} style={{ padding: 15 }}>
+            {books.map((item) => (
+              <Col span={4} key={item.key}>
+                <NavLink to='/home/bookdetails'>
+                  <Card
+                    title={item.title}
+                    key={item.title}
+                    cover={
+                      <img alt='example' src={item.img} />
+
+                      /* <Fragment>
                       <Document
                         onClick={() => setVisible(true)}
                         file={require(`./${item.url}`)}
@@ -193,23 +222,24 @@ const HomeContent = (props) => {
                         size='small'
                         onChange={onChangePage}
                       />
-                    </Fragment>
-                  }
-                  style={{ marginBottom: 10, with: '20vh' }}
-                >
-                  <Card.Meta title={item.title} />
-                  <p></p>
-                  <p>Original Language:{item.originLanguage}</p>
-                  <p>Target Language: {item.expectLanguage}</p>
-                  <p>Deadline: {item.deadline}days</p>
-                  <NavLink to={`/home/translate?${item.index}`}>
-                    <Button>translate</Button>
-                  </NavLink>
-                </Card>
+                    </Fragment> */
+                    }
+                    style={{ marginBottom: 10 }}
+                  >
+                    <Card.Meta />
+                    <p></p>
+                    <p>Original Language:{item.originLanguage}</p>
+                    <p>Target Language: {item.expectLanguage}</p>
+                    <p>Deadline: {item.deadline}days</p>
+                    <NavLink to={`/home/translate?${item.index}`}>
+                      <Button>translate</Button>
+                    </NavLink>
+                  </Card>
+                </NavLink>
               </Col>
-            </Row>
-          </Fragment>
-        ))}
+            ))}
+          </Row>
+        </Fragment>
       </div>
     </Fragment>
   );
