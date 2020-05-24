@@ -33,3 +33,9 @@
 .topContent>div>span>span>span {
     background-color: #001529;
 }
+
+.leadBoard {
+    position: absolute;
+    right: 5vw;
+    width: 40vw;
+}

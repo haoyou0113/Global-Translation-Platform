@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import './index.css';
 
 const HomeMenu = (props) => {
-  const { username, role } = props.userInfo.data;
+  const { firstname, role } = props.userInfo.data;
 
   const handleClick = (e) => {
     console.log('click ', e);
@@ -38,7 +38,7 @@ const HomeMenu = (props) => {
             icon={<UserOutlined />}
           />
         </NavLink>
-        Hello {username}!
+        Hello {firstname}!
         <NavLink to='/home/main'>
           <a style={{ marginLeft: 10 }} href='/home/main'>
             Logout

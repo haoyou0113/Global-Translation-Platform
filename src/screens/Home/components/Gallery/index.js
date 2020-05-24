@@ -20,7 +20,8 @@ const HomeContent = (props) => {
   const [visible, setVisible] = useState(false);
   const [data, setDate] = useState([]);
   const [currentImg, setCurrentImg] = useState('');
-
+  const [originbooks, setOriginBooks] = useState([]);
+  const [language, setLanguage] = useState([]);
   const [books, setBooks] = useState([
     {
       key: 1,
@@ -55,145 +56,108 @@ const HomeContent = (props) => {
       deadline: 60,
     },
   ]);
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
-
+  const formRef = React.createRef();
+  console.log(language);
   const onpenGallery = (item) => {
     setCurrentImg('/gallery/' + item);
     setVisible(true);
   };
-  // useEffect(
-  //   () =>
-  //     get('http://localhost:8080/api/origin/list').then((res) => {
-  //       setDate(res);
-  //     }),
-  //   []
-  // );
 
-  // const imgList = books.map((item) => (
-  //   <Col xs={5}>
-  //     <Card
-  //       cover={
-  //         <Document
-  //           onClick={() => onpenGallery(item)}
-  //           file={`./${item}`}
-  //           onLoadSuccess={onDocumentLoadSuccess}
-  //         >
-  //           <Page pageNumber={pageNumber} />
-  //         </Document>
-  //       }
-  //       style={{ marginBottom: 10 }}
-  //     >
-  //       <Card.Meta title={'Library for All' + item} description='Love' />
-  //     </Card>
-  //   </Col>
-  // ));
-  const onDocumentLoadSuccess = ({ numPages }) => {
-    setNumPages(numPages);
-  };
-  const searchingBooks = (value) => {
-    // value ? setBooks([value.substr(-5, 5)]) : setBooks(originData);
-  };
-  const onChangePage = (page) => {
-    setPageNumber(page);
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      get('http://localhost:8080/api/origin/list').then((res) => {
+        if (res.errno === 0) {
+          setBooks(res.data);
+          setOriginBooks(res.data);
+          setLanguage(res.data.map((item) => item.language));
+          console.log(res.data);
+        }
+      });
+    };
+    fetchData();
+  }, []);
+
   function onChange(value) {
-    console.log(`selected ${value}`);
+    const result = books.filter((item) => item.language === value);
+    setBooks(result);
   }
 
-  function onBlur() {
-    console.log('blur');
+  function categories(value) {
+    console.log(value);
+    const result = books.filter((item) => item.type === value);
+    setBooks(result);
   }
 
-  function onFocus() {
-    console.log('focus');
+  const clear = () => {
+    setBooks(originbooks);
+    formRef.current.resetFields();
+  };
+
+  function rate(val) {
+    const result = books.filter((item) => item.level === val);
+    setBooks(result);
   }
 
-  function onSearch(val) {
-    console.log('search:', val);
+  function searchingBar(value) {
+    if (value) {
+      const result = books.filter((item) => item.name.indexOf(value) !== -1);
+      setBooks(result);
+    } else {
+      setBooks(originbooks);
+    }
   }
-
   return (
     <Fragment>
-      <TopContent className='Gallery' searchingBooks={searchingBooks} />
+      <TopContent className='Gallery' />
       <Title level={2} style={{ textAlign: 'center' }}>
         Books You Might Want
       </Title>
+
       <Search
         className='homeSearch'
         placeholder='Search the documents you might be interested'
         enterButton='Search'
         size='large'
-        onSearch={(value) => props.searchingBooks(value)}
+        onSearch={searchingBar}
       />
 
       <div className='space-align-container' style={{ margin: 20 }}>
-        <Form layout='inline'>
+        <Form layout='inline' ref={formRef}>
           <Form.Item name='select' label='Original Language' hasFeedback>
             <Select
-              allowClear
               showSearch
               style={{ width: 200 }}
               placeholder='Select a Language'
               optionFilterProp='children'
               onChange={onChange}
-              onFocus={onFocus}
-              onBlur={onBlur}
-              onSearch={onSearch}
               filterOption={(input, option) =>
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }
             >
-              <Option value='jack'>English</Option>
-              <Option value='lucy'>Chinese</Option>
-              <Option value='tom'>Japanese</Option>
-            </Select>
-          </Form.Item>{' '}
-          <Form.Item name='select' label='Target Language' hasFeedback>
-            <Select
-              allowClear
-              showSearch
-              style={{ width: 200 }}
-              placeholder='Select a Language'
-              optionFilterProp='children'
-              onChange={onChange}
-              onFocus={onFocus}
-              onBlur={onBlur}
-              onSearch={onSearch}
-              filterOption={(input, option) =>
-                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }
-            >
-              <Option value='jack'>English</Option>
-              <Option value='lucy'>Chinese</Option>
-              <Option value='tom'>Japanese</Option>
+              <Option value='English'>English</Option>
             </Select>
           </Form.Item>
           <Form.Item name='rate' label='Translation Level'>
-            <Rate defaultValue={1} />
+            <Rate defaultValue={1} name='level' onChange={rate} />
           </Form.Item>
-          <Form.Item
-            name='select-multiple'
-            label='Books Category'
-            rules={[
-              {
-                required: true,
-                message: 'Please select the type of book!',
-                type: 'array',
-              },
-            ]}
-          >
-            <Select mode='multiple' placeholder='Please select book type'>
-              <Option value='fiction'>Fiction</Option>
-              <Option value='story'>Story</Option>
-              <Option value='children'>Children</Option>
+          <Form.Item name='categories' label='Books Category' hasFeedback>
+            <Select
+              placeholder='Please select book categories'
+              style={{ width: 200 }}
+              optionFilterProp='children'
+              onChange={categories}
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              <Option value='Fiction'>Fiction</Option>
+              <Option value='Story'>Story</Option>
+              <Option value='Children'>Children</Option>
             </Select>
           </Form.Item>
-          <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
-            <Button type='primary' htmlType='submit'>
-              Filter
-            </Button>
-          </Form.Item>
+          <Button type='primary' onClick={clear}>
+            Clear
+          </Button>
         </Form>
       </div>
 
@@ -202,38 +166,26 @@ const HomeContent = (props) => {
           <Row gutter={16} style={{ padding: 15 }}>
             {books.map((item) => (
               <Col span={4} key={item.key}>
-                <NavLink to='/home/bookdetails'>
+                <NavLink to={`/home/bookdetails?${item.id}`} key={item.key}>
                   <Card
-                    title={item.title}
-                    key={item.title}
-                    cover={
-                      <img alt='example' src={item.img} />
-
-                      /* <Fragment>
-                      <Document
-                        onClick={() => setVisible(true)}
-                        file={require(`./${item.url}`)}
-                        onLoadSuccess={onDocumentLoadSuccess}
-                      >
-                        <Page pageNumber={pageNumber} />
-                      </Document>
-                      <Pagination
-                        total={numPages}
-                        showTotal={(total) => ` ${total} pages`}
-                        current={pageNumber}
-                        pageSize={1}
-                        size='small'
-                        onChange={onChangePage}
-                      />
-                    </Fragment> */
-                    }
+                    title={item.name}
+                    key={item.key}
+                    cover={<img alt='example' src={item.image} />}
                     style={{ marginBottom: 10 }}
                   >
                     <Card.Meta />
                     <p></p>
-                    <p>Original Language:{item.originLanguage}</p>
-                    <p>Target Language: {item.expectLanguage}</p>
-                    <p>Deadline: {item.deadline}days</p>
+                    <p>
+                      <b>Original Language:</b> {item.language}
+                    </p>
+                    <p>
+                      <b>Target Language:</b> {item.expectLanguage}
+                    </p>
+                    <p>
+                      <b>Level</b>
+                      {item.level}
+                      {/* <Rate disabled defaultValue={item.level} /> */}
+                    </p>
                     <NavLink to={`/home/translate?${item.index}`}>
                       <Button>translate</Button>
                     </NavLink>
