@@ -100,7 +100,9 @@ export default function BookDetails(props) {
         <Descriptions.Item label='Original Language'>
           {book.language}
         </Descriptions.Item>
-        <Descriptions.Item label='Target Language'>Laos</Descriptions.Item>
+        <Descriptions.Item label='Target Language'>
+          {book.target_language}
+        </Descriptions.Item>
         <Descriptions.Item label='Author Name'>{book.author}</Descriptions.Item>
         <Descriptions.Item label='Content Pill'>
           {book.content_pill}

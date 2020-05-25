@@ -56,6 +56,8 @@ const HomeContent = (props) => {
       deadline: 60,
     },
   ]);
+
+  console.log(language);
   const formRef = React.createRef();
   console.log(language);
   const onpenGallery = (item) => {
@@ -78,7 +80,7 @@ const HomeContent = (props) => {
   }, []);
 
   function onChange(value) {
-    const result = books.filter((item) => item.language === value);
+    const result = books.filter((item) => item.language.indexOf(value) !== -1);
     setBooks(result);
   }
 
@@ -135,10 +137,11 @@ const HomeContent = (props) => {
               }
             >
               <Option value='English'>English</Option>
+              <Option value='Chinese'>Chinese</Option>
             </Select>
           </Form.Item>
           <Form.Item name='rate' label='Translation Level'>
-            <Rate defaultValue={1} name='level' onChange={rate} />
+            <Rate defaultValue={0} name='level' onChange={rate} />
           </Form.Item>
           <Form.Item name='categories' label='Books Category' hasFeedback>
             <Select
@@ -179,7 +182,7 @@ const HomeContent = (props) => {
                       <b>Original Language:</b> {item.language}
                     </p>
                     <p>
-                      <b>Target Language:</b> {item.expectLanguage}
+                      <b>Target Language:</b> {item.target_language}
                     </p>
                     <p>
                       <b>Level</b>
