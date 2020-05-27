@@ -9,9 +9,9 @@ import { get, post } from '../../../../utils/request';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './index.css';
-import pdf1 from './20 Busy Little Ants.pdf';
-import pdf2 from './How The Rooster Found His Sound.pdf';
-import pdf3 from './Tahlia The Tortoise Finds An Umbrella.pdf';
+// import pdf1 from './20 Busy Little Ants.pdf';
+// import pdf2 from './How The Rooster Found His Sound.pdf';
+// import pdf3 from './Tahlia The Tortoise Finds An Umbrella.pdf';
 import 'draft-js/dist/Draft.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 const ReactPDF = require('react-pdf');
@@ -35,20 +35,20 @@ const Translation = (props) => {
         (res) => {
           if (res.errno === 0) {
             setValue(`${res.data.name}`);
-            if (inforArr[0] == 146) {
-              setUrl(pdf1);
-            } else if (inforArr[0] == 552) {
-              setUrl(pdf2);
-            } else {
-              setUrl(pdf3);
-            }
-            if (res.data.trans_content === null) {
-              setValue(`${res.data.name}`);
-            } else {
-              console.log(res.data.trans_content);
+            // if (inforArr[0] == 146) {
+            //   setUrl(pdf1);
+            // } else if (inforArr[0] == 552) {
+            //   setUrl(pdf2);
+            // } else {
+            //   setUrl(pdf3);
+            // }
+            // if (res.data.trans_content === null) {
+            //   setValue(`${res.data.name}`);
+            // } else {
+            //   console.log(res.data.trans_content);
 
-              setValue(res.data.trans_content);
-            }
+            //   setValue(res.data.trans_content);
+            // }
           }
         }
       );
@@ -76,7 +76,7 @@ const Translation = (props) => {
     <div style={{ height: '83vh' }} className='translate'>
       <Title>Workbench</Title>
       <Title level={2}>Translation</Title>
-      <Fragment>
+      {/* <Fragment>
         <ReactPDF.Document
           file={url}
           onLoadSuccess={onDocumentLoadSuccess}
@@ -92,7 +92,7 @@ const Translation = (props) => {
           size='small'
           onChange={onChangePage}
         />
-      </Fragment>
+      </Fragment> */}
       <ReactQuill
         theme='snow'
         value={value}
