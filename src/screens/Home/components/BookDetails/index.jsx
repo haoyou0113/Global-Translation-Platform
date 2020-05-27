@@ -10,10 +10,12 @@ import {
 } from 'antd';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { get } from '../../../../utils/request';
-import PDFViewer from 'pdf-viewer-reactjs';
+import pdf1 from './20 Busy Little Ants.pdf';
+import pdf2 from './How The Rooster Found His Sound.pdf';
+import pdf3 from './Tahlia The Tortoise Finds An Umbrella.pdf';
 import { NavLink } from 'react-router-dom';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-
+const ReactPDF = require('react-pdf');
 const { Option } = Select;
 export default function BookDetails(props) {
   const symbol = props.location.search.substr(1);
@@ -24,17 +26,8 @@ export default function BookDetails(props) {
   const [ori, setOri] = useState('');
   const [tar, setTar] = useState('');
   const [url, setUrl] = useState();
-  const [book, setBook] = useState({
-    key: 1,
-    url: 'Busy Little.pdf',
-    img:
-      'https://images-na.ssl-images-amazon.com/images/I/51%2BoLSpnLtL._SX351_BO1,204,203,200_.jpg',
-    title: 'Busy Little',
-    index: 'busy_little',
-    originLanguage: 'English',
-    expectLanguage: 'Lao',
-    deadline: 60,
-  });
+  const [book, setBook] = useState({});
+
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   };
@@ -50,7 +43,13 @@ export default function BookDetails(props) {
           setBook(res.data);
           setOriList(res.data.language.split(','));
           setTarList(res.data.target_language.split(','));
-          setUrl(require(`./${res.data.name}.pdf`));
+          if (res.data.name == 'How The Rooster Found His Sound') {
+            setUrl(pdf2);
+          } else if (res.data.name == '20 Busy Little Ants') {
+            setUrl(pdf1);
+          } else {
+            setUrl(pdf3);
+          }
 
           console.log(res.data);
         }
@@ -70,14 +69,11 @@ export default function BookDetails(props) {
   };
 
   return (
-    <div>
+    <div style={{ height: '83vh' }}>
       <Fragment>
-        <Document
-          file={require('./Tahlia The Tortoise Finds An Umbrella.pdf')}
-          onLoadSuccess={onDocumentLoadSuccess}
-        >
-          <Page pageNumber={pageNumber} />
-        </Document>
+        <ReactPDF.Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
+          <ReactPDF.Page pageNumber={pageNumber} />
+        </ReactPDF.Document>
         <Pagination
           total={numPages}
           showTotal={(total) => ` ${total} pages`}

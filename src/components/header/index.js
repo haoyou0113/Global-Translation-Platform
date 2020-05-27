@@ -30,20 +30,7 @@ export default class Header extends React.Component {
           ) : (
             ''
           )}
-          <Col span={menuType ? 18 : 24}>
-            <span>Welcome {this.state.userName}</span>
-            <a href='/'>Logout</a>
-          </Col>
         </Row>
-        {menuType ? (
-          ''
-        ) : (
-          <Row className='breadcrumb'>
-            <Col span='4' className='breadcrumb-title'>
-              Home
-            </Col>
-          </Row>
-        )}
       </div>
     );
   }

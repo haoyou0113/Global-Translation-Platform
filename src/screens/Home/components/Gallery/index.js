@@ -2,7 +2,7 @@ import React, { Component, Fragment, useState, useEffect } from 'react';
 import { Card, Row, Col, Modal } from 'antd';
 import { Input } from 'antd';
 
-import { Button, Layout, Typography, Form, Rate, Alert } from 'antd';
+import { Button, Layout, Typography, Form, Rate, Alert, Result } from 'antd';
 import { get } from '../../../../utils/request';
 import TopContent from '../TopContent';
 import { Document, Page, pdfjs } from 'react-pdf';
@@ -198,11 +198,10 @@ const HomeContent = (props) => {
           </Button>
         </Form>
       </div>
-      <Alert
-        message='Informational Notes'
-        description='Additional description and information about copywriting.'
-        type='info'
-        showIcon
+
+      <Result
+        status='warning'
+        title='There are some problems with your operation.'
         style={{ display: books.length <= 0 ? 'block' : 'none' }}
       />
       <div

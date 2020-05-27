@@ -1,7 +1,7 @@
 import './index.less';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, Input, InputNumber, Popconfirm, Form, Card } from 'antd';
-
+import { get, post } from '../../utils/request';
 const originData = [];
 
 for (let i = 0; i < 100; i++) {
@@ -93,26 +93,38 @@ const UsersManagement = () => {
 
   const columns = [
     {
+      title: 'Id',
+      dataIndex: 'id',
+      width: '5%',
+      editable: true,
+    },
+    {
       title: 'name',
-      dataIndex: 'name',
+      dataIndex: 'firstname',
+      width: '25%',
+      editable: true,
+    },
+    {
+      title: 'Title',
+      dataIndex: 'rolename',
       width: '25%',
       editable: true,
     },
     {
       title: 'Award Points',
-      dataIndex: 'age',
+      dataIndex: 'experience',
       width: '15%',
       editable: true,
     },
     {
       title: 'Translations Completed',
-      dataIndex: 'address',
+      dataIndex: 'translation_num',
       width: '20%',
       editable: true,
     },
     {
-      title: 'Books Translating ',
-      dataIndex: 'books_translating',
+      title: 'Email ',
+      dataIndex: 'email',
       width: '20%',
       editable: true,
     },
@@ -151,6 +163,16 @@ const UsersManagement = () => {
       },
     },
   ];
+  useEffect(() => {
+    const fetchData = async () => {
+      get('http://localhost:8080/api/user/topN').then((res) => {
+        if (res.errno === 0) {
+          setData(res.data);
+        }
+      });
+    };
+    fetchData();
+  }, []);
   const mergedColumns = columns.map((col) => {
     if (!col.editable) {
       return col;

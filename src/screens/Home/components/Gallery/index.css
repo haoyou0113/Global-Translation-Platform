@@ -1,38 +1,36 @@
 .homeSearch {
-    width: 30vw;
-    margin: 0px auto;
-    margin-left: 35%;
+  width: 30vw;
+  margin: 0px auto;
+  margin-left: 35%;
 }
 
 .Gallery {
-    background: linear-gradient(#ffccc7, #91d5ff);
+  background: linear-gradient(#ffccc7, #91d5ff);
 }
 
 .space-align-container {
-    display: flex;
-    justify-content: center;
-
+  display: flex;
+  justify-content: center;
 }
 
 .react-pdf__Page__canvas {
-    margin: auto;
-    height: auto !important;
-    width: 20vw !important;
-    margin-bottom: 40px !important;
-    margin-top: 40px !important;
-    margin-left: 20vw !important;
-
+  margin: auto;
+  height: auto !important;
+  width: 20vw !important;
+  margin-bottom: 40px !important;
+  margin-top: 40px !important;
+  margin-left: 20vw !important;
 }
 
-.ant-select-multiple {
-    width: 10vw !important;
+.homeContent.ant-select-multiple {
+  width: 10vw !important;
 }
 
-.ant-card {
-    height: 719px !important;
+.homeContent.ant-card {
+  height: 719px !important;
 }
 
-.ant-card-body {
-    position: absolute;
-    bottom: 0;
+.homeContent.ant-card-body {
+  position: absolute;
+  bottom: 0;
 }

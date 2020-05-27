@@ -1,0 +1,4 @@
+.translate .react-pdf__Document {
+  position: absolute !important;
+  left: -7vw !important;
+}

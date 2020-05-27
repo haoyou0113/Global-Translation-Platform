@@ -41,7 +41,11 @@ export const Home = (props) => {
           />
           <Menu userInfo={userInfo} />
         </Header>
-        <Content className='homeContent' style={{ marginTop: 64 }}>
+        <Content
+          className='homeContent'
+          style={{ marginTop: 64 }}
+          userInfo={userInfo}
+        >
           {props.children}
         </Content>
         <Footer>
