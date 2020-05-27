@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import './index.css';
 
 const HomeMenu = (props) => {
-  const { username, role } = props.userInfo.data;
+  const { firstname, role, experience } = props.userInfo.data;
 
   const handleClick = (e) => {
     console.log('click ', e);
@@ -19,8 +19,10 @@ const HomeMenu = (props) => {
         <NavLink to='/home/main'>Home</NavLink>
       </Menu.Item>
       <Menu.Item key='2'>Discover</Menu.Item>
-      <Menu.Item key='3'>Translations</Menu.Item>
-      <Menu.Item key='4'>About Us</Menu.Item>
+      <Menu.Item key='4'>
+        About Us
+        <a href='https://libraryforall.org/'></a>
+      </Menu.Item>
       <Menu.Item
         className='dashboardMenu'
         key='5'
@@ -30,6 +32,7 @@ const HomeMenu = (props) => {
       </Menu.Item>
 
       <span className='loginLogo'>
+        your curren points : {experience}
         <NavLink to='/home/userInfor'>
           <Avatar
             style={{
@@ -38,7 +41,7 @@ const HomeMenu = (props) => {
             icon={<UserOutlined />}
           />
         </NavLink>
-        Hello {username}!
+        Hello {firstname}!
         <NavLink to='/home/main'>
           <a style={{ marginLeft: 10 }} href='/home/main'>
             Logout

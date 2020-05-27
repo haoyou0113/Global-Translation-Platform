@@ -36,12 +36,12 @@ const TranslatedBooks = () => {
       {
         title: 'Action',
         key: 'action',
-        render: () => (
+        render: (name) => (
           <div>
             <a>Delete</a>
             <a> </a>
             <a>
-              <NavLink to='/home/translate?Review'>Review</NavLink>{' '}
+              <NavLink to={`/home/translate?${name}`}>Review</NavLink>{' '}
             </a>
           </div>
         ),

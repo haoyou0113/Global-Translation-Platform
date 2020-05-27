@@ -35,7 +35,7 @@ const OriginalBooks = () => {
 
       {
         title: ' Original language',
-        dataIndex: 'original_Language',
+        dataIndex: 'language',
         width: 200,
       },
       {
@@ -44,8 +44,8 @@ const OriginalBooks = () => {
         width: 200,
       },
       {
-        title: 'Locking Status',
-        dataIndex: 'locking_status',
+        title: 'Status',
+        dataIndex: 'status',
         width: 200,
       },
       {
@@ -54,10 +54,6 @@ const OriginalBooks = () => {
         render: () => (
           <div>
             <a>Delete</a>
-            <a> </a>
-            <a>Publish</a>
-            <a> </a>
-            <a>Review</a>
           </div>
         ),
       },
@@ -172,12 +168,22 @@ const OriginalBooks = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      get('http://localhost:8080/api/origin/list').then((res) => {
-        if (res.errno === 0) {
-          setOriginBooks(res.data);
-          console.log(res.data);
-        }
-      });
+      get('http://localhost:8080/api/origin/list')
+        .then((res) => {
+          if (res.errno === 0) {
+            return res.data.map((item) => ({
+              name: item.name,
+              language: item.language,
+              target_language: item.target_language,
+              status:
+                item.status == 0 ? 'Waiting for translating' : 'translating ',
+            }));
+          }
+        })
+        .then((data) => {
+          setOriginBooks(data);
+          console.log(data);
+        });
     };
     fetchData();
   }, []);

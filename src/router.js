@@ -8,6 +8,7 @@ import UsersManagement from './pages/UserManagement';
 import UserInfor from './pages/UserInfor';
 import HomeContent from './screens/Home/components/Gallery';
 import Translation from './screens/Home/components/Translation';
+import BookDetails from './screens/Home/components/BookDetails';
 import Login from './pages/Login';
 import './App.css';
 
@@ -30,6 +31,7 @@ export default class ERouter extends React.Component {
                     <Route path='/home/main' component={HomeContent} />
                     <Route path='/home/userInfor' component={UserInfor} />
                     <Route path='/home/translate' component={Translation} />
+                    <Route path='/home/bookdetails' component={BookDetails} />
                   </Switch>
                 </Home>
               )}
