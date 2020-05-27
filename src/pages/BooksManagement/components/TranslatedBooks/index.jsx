@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { get } from '../../../../utils/request';
+import { get, post } from '../../../../utils/request';
 import { Table } from 'antd';
 import { NavLink } from 'react-router-dom';
 
 const TranslatedBooks = () => {
   const [translatedBooks, setTranslatedBooks] = useState([]);
-
+  const [data, setData] = useState(1);
   const state = {
     columns: [
       {
@@ -14,39 +14,56 @@ const TranslatedBooks = () => {
         width: 200,
       },
       {
-        title: 'Original language',
-        dataIndex: 'original_language',
+        title: 'Current language',
+        dataIndex: 'download_loc',
         width: 200,
       },
       {
-        title: 'Existing Version',
-        dataIndex: 'existing_version',
+        title: 'Status',
+        dataIndex: 'status_info',
         width: 200,
       },
       {
         title: 'Translator',
-        dataIndex: 'publisher',
+        dataIndex: 'translator_name',
         width: 200,
       },
       {
         title: 'Reviewer',
-        dataIndex: 'trans_num',
+        dataIndex: 'translation_reviewer_name',
         width: 200,
       },
       {
         title: 'Action',
         key: 'action',
-        render: (name) => (
+        render: (record) => (
           <div>
-            <a>Delete</a>
+            <a onClick={() => reject(record)}>Reject</a>
+            <a> </a>
+            <a onClick={() => pass(record)}> Pass</a>
             <a> </a>
             <a>
-              <NavLink to={`/home/translate?${name}`}>Review</NavLink>{' '}
+              <NavLink to={`/home/translate?${record.id}`}>Review</NavLink>{' '}
             </a>
           </div>
         ),
       },
     ],
+  };
+
+  const reject = (value) => {
+    post('http://localhost:8080/api/trans/update', {
+      id: value.id,
+      status_info: 'REJECT',
+    });
+    setData((data) => data + 1);
+  };
+  const pass = (value) => {
+    post('http://localhost:8080/api/trans/update', {
+      id: value.id,
+      status_info: 'PASS',
+    });
+    setData((data) => data + 1);
   };
   useEffect(() => {
     get('http://localhost:8080/api/trans/list').then((res) => {
@@ -55,7 +72,7 @@ const TranslatedBooks = () => {
         console.log(res.data);
       }
     });
-  }, []);
+  }, [data]);
   const columns = state.columns.map((col, index) => ({
     ...col,
     onHeaderCell: (column) => ({

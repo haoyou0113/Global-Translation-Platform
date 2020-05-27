@@ -1,8 +1,10 @@
 import React, { Component, Fragment, useState, useEffect } from 'react';
 import { Card, Row, Col, Modal } from 'antd';
 import { Input } from 'antd';
-
-import { Button, Layout, Typography, Form, Rate, Alert, Result } from 'antd';
+import Rating from '@material-ui/lab/Rating';
+// import Typography from '@material-ui/core/Typography';
+// import Box from '@material-ui/core/Box';
+import { Button, Layout, Form, Rate, Alert, Result, Typography } from 'antd';
 import { get } from '../../../../utils/request';
 import TopContent from '../TopContent';
 import { Document, Page, pdfjs } from 'react-pdf';
@@ -59,10 +61,6 @@ const HomeContent = (props) => {
 
   const formRef = React.createRef();
   console.log(language);
-  const onpenGallery = (item) => {
-    setCurrentImg('/gallery/' + item);
-    setVisible(true);
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -209,7 +207,7 @@ const HomeContent = (props) => {
         style={{ display: books.length > 0 ? 'flex' : 'none' }}
       >
         <Fragment>
-          <Row gutter={16} style={{ padding: 15 }}>
+          <Row gutter={16} style={{ padding: 15, width: '100vw' }}>
             {books.map((item) => (
               <Col span={4} key={item.key}>
                 <NavLink to={`/home/bookdetails?${item.id}`} key={item.key}>
@@ -228,13 +226,8 @@ const HomeContent = (props) => {
                       <b>Target Language:</b> {item.target_language}
                     </p>
                     <p>
-                      <b>Level</b>
-                      {item.level}
-                      {/* <Rate disabled defaultValue={item.level} /> */}
+                      <Rating name='read-only' value={item.level} readOnly />
                     </p>
-                    <NavLink to={`/home/translate?${item.index}`}>
-                      <Button>translate</Button>
-                    </NavLink>
                   </Card>
                 </NavLink>
               </Col>
