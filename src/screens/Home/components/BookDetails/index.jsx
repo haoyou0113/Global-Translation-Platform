@@ -1,21 +1,28 @@
-import React, { Component, Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import {
   Button,
-  Layout,
-  Typography,
+  Select,
   Pagination,
   Descriptions,
   Badge,
+  Input,
+  Form,
 } from 'antd';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { get } from '../../../../utils/request';
+import PDFViewer from 'pdf-viewer-reactjs';
 import { NavLink } from 'react-router-dom';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
+const { Option } = Select;
 export default function BookDetails(props) {
   const symbol = props.location.search.substr(1);
-  console.log(symbol);
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
+  const [oriList, setOriList] = useState([]);
+  const [tarList, setTarList] = useState([]);
+  const [ori, setOri] = useState('');
+  const [tar, setTar] = useState('');
   const [url, setUrl] = useState();
   const [book, setBook] = useState({
     key: 1,
@@ -31,33 +38,18 @@ export default function BookDetails(props) {
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   };
-  const searchingBooks = (value) => {
-    // value ? setBooks([value.substr(-5, 5)]) : setBooks(originData);
-  };
+
   const onChangePage = (page) => {
     setPageNumber(page);
   };
-  function onChange(value) {
-    console.log(`selected ${value}`);
-  }
 
-  function onBlur() {
-    console.log('blur');
-  }
-
-  function onFocus() {
-    console.log('focus');
-  }
-
-  function onSearch(val) {
-    console.log('search:', val);
-  }
   useEffect(() => {
     const fetchData = async () => {
       get(`http://localhost:8080/api/origin/info?id=${symbol}`).then((res) => {
         if (res.errno === 0) {
           setBook(res.data);
-
+          setOriList(res.data.language.split(','));
+          setTarList(res.data.target_language.split(','));
           setUrl(require(`./${res.data.name}.pdf`));
 
           console.log(res.data);
@@ -66,23 +58,25 @@ export default function BookDetails(props) {
     };
     fetchData();
   }, []);
+
+  const onFinish = (values) => {
+    console.log('Received values of form: ', values);
+  };
+  const target = (value) => {
+    setTar(value);
+  };
+  const origin = (value) => {
+    setOri(value);
+  };
+
   return (
     <div>
       <Fragment>
-        <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
+        <Document
+          file={require('./Tahlia The Tortoise Finds An Umbrella.pdf')}
+          onLoadSuccess={onDocumentLoadSuccess}
+        >
           <Page pageNumber={pageNumber} />
-          <NavLink to={`/home/translate?${book.name}`}>
-            <Button
-              type='primary'
-              style={{
-                position: 'absolute',
-                right: '30vw',
-                top: '30vh',
-              }}
-            >
-              Translate
-            </Button>
-          </NavLink>
         </Document>
         <Pagination
           total={numPages}
@@ -93,6 +87,62 @@ export default function BookDetails(props) {
           onChange={onChangePage}
         />
       </Fragment>
+      <div>
+        <Form
+          name='complex-form'
+          onFinish={onFinish}
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+        >
+          <Form.Item label='Language'>
+            <Input.Group compact>
+              <Form.Item
+                name={'originalLanguage'}
+                noStyle
+                rules={[
+                  {
+                    required: true,
+                    message: 'Original Language is required',
+                  },
+                ]}
+              >
+                <Select
+                  placeholder='Select Original Language'
+                  onChange={origin}
+                >
+                  {oriList.map((item) => (
+                    <Option value={item}>{item}</Option>
+                  ))}
+                </Select>
+              </Form.Item>
+              --
+              <Form.Item
+                name={'targetLanguage'}
+                noStyle
+                rules={[
+                  {
+                    required: true,
+                    message: 'Target Language is required',
+                  },
+                ]}
+              >
+                <Select placeholder='Select Target Language' onChange={target}>
+                  {tarList.map((item) => (
+                    <Option value={item}>{item}</Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Input.Group>
+          </Form.Item>
+          <Form.Item label=' ' colon={false}>
+            <NavLink to={`/home/translate?${book.id}|${ori}|${tar}`}>
+              <Button type='primary' style={{}}>
+                Translate
+              </Button>
+            </NavLink>
+          </Form.Item>
+        </Form>
+      </div>
       <Descriptions title='Book Info' bordered>
         <Descriptions.Item label='LFA ID'>{book.id}</Descriptions.Item>
         <Descriptions.Item label='Book Title'>{book.name}</Descriptions.Item>

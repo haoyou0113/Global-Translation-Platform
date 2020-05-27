@@ -27,3 +27,12 @@
 .ant-select-multiple {
     width: 10vw !important;
 }
+
+.ant-card {
+    height: 719px !important;
+}
+
+.ant-card-body {
+    position: absolute;
+    bottom: 0;
+}

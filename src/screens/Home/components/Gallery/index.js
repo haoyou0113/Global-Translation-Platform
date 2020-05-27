@@ -2,7 +2,7 @@ import React, { Component, Fragment, useState, useEffect } from 'react';
 import { Card, Row, Col, Modal } from 'antd';
 import { Input } from 'antd';
 
-import { Button, Layout, Typography, Form, Rate } from 'antd';
+import { Button, Layout, Typography, Form, Rate, Alert } from 'antd';
 import { get } from '../../../../utils/request';
 import TopContent from '../TopContent';
 import { Document, Page, pdfjs } from 'react-pdf';
@@ -18,7 +18,7 @@ const { Search } = Input;
 const { Title } = Typography;
 const HomeContent = (props) => {
   const [visible, setVisible] = useState(false);
-  const [data, setDate] = useState([]);
+
   const [currentImg, setCurrentImg] = useState('');
   const [originbooks, setOriginBooks] = useState([]);
   const [language, setLanguage] = useState([]);
@@ -57,7 +57,6 @@ const HomeContent = (props) => {
     },
   ]);
 
-  console.log(language);
   const formRef = React.createRef();
   console.log(language);
   const onpenGallery = (item) => {
@@ -71,7 +70,7 @@ const HomeContent = (props) => {
         if (res.errno === 0) {
           setBooks(res.data);
           setOriginBooks(res.data);
-          setLanguage(res.data.map((item) => item.language));
+          setLanguage();
           console.log(res.data);
         }
       });
@@ -81,6 +80,12 @@ const HomeContent = (props) => {
 
   function onChange(value) {
     const result = books.filter((item) => item.language.indexOf(value) !== -1);
+    setBooks(result);
+  }
+  function onChangeTarget(value) {
+    const result = books.filter(
+      (item) => item.target_language.indexOf(value) !== -1
+    );
     setBooks(result);
   }
 
@@ -108,6 +113,7 @@ const HomeContent = (props) => {
       setBooks(originbooks);
     }
   }
+  console.log(books);
   return (
     <Fragment>
       <TopContent className='Gallery' />
@@ -138,6 +144,35 @@ const HomeContent = (props) => {
             >
               <Option value='English'>English</Option>
               <Option value='Chinese'>Chinese</Option>
+              <Option value='Japanese'>Japanese</Option>
+              <Option value='Spanish'>Spanish</Option>
+              <Option value='German'>German</Option>
+              <Option value='French'>French</Option>
+              <Option value='Laos'>Laos</Option>
+              <Option value='Thai'>Thai</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item name='select2' label='Target Language' hasFeedback>
+            <Select
+              showSearch
+              style={{ width: 200 }}
+              placeholder='Select a Language'
+              optionFilterProp='children'
+              onChange={onChangeTarget}
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              <Option value='English'>English</Option>
+              <Option value='Chinese'>Chinese</Option>
+              <Option value='Japanese'>Japanese</Option>
+              <Option value='Spanish'>Spanish</Option>
+              <Option value='German'>German</Option>
+              <Option value='French'>French</Option>
+              <Option value='Laos'>Laos</Option>
+              <Option value='Thai'>Thai</Option>
+              <Option value='Korean'>Korean</Option>
+              <Option value='Javanese'>Javanese</Option>
             </Select>
           </Form.Item>
           <Form.Item name='rate' label='Translation Level'>
@@ -163,8 +198,17 @@ const HomeContent = (props) => {
           </Button>
         </Form>
       </div>
-
-      <div className='site-card-wrapper'>
+      <Alert
+        message='Informational Notes'
+        description='Additional description and information about copywriting.'
+        type='info'
+        showIcon
+        style={{ display: books.length <= 0 ? 'block' : 'none' }}
+      />
+      <div
+        className='site-card-wrapper'
+        style={{ display: books.length > 0 ? 'flex' : 'none' }}
+      >
         <Fragment>
           <Row gutter={16} style={{ padding: 15 }}>
             {books.map((item) => (
