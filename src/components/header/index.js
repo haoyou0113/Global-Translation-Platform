@@ -7,7 +7,7 @@ export default class Header extends React.Component {
   state = {};
   componentWillMount() {
     this.setState({
-      userName: 'You Hao',
+      userName: 'a1',
     });
     setInterval(() => {
       let sysTime = Util.formateDate(new Date().getTime());
@@ -15,10 +15,8 @@ export default class Header extends React.Component {
         sysTime,
       });
     }, 1000);
-    this.getWeatherAPIData();
   }
 
-  getWeatherAPIData() {}
   render() {
     const menuType = this.props.menuType;
     return (
@@ -32,20 +30,7 @@ export default class Header extends React.Component {
           ) : (
             ''
           )}
-          <Col span={menuType ? 18 : 24}>
-            <span>Welcome {this.state.userName}</span>
-            <a href='/'>Logout</a>
-          </Col>
         </Row>
-        {menuType ? (
-          ''
-        ) : (
-          <Row className='breadcrumb'>
-            <Col span='4' className='breadcrumb-title'>
-              Home
-            </Col>
-          </Row>
-        )}
       </div>
     );
   }
