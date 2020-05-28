@@ -6,7 +6,8 @@ import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
 const { Option } = Select;
 const OriginalBooks = () => {
   const [originBooks, setOriginBooks] = useState([]);
-  const delet = () => {};
+  const [ref, setRef] = useState(1);
+
   const formItemLayout = {
     labelCol: {
       span: 6,
@@ -44,6 +45,11 @@ const OriginalBooks = () => {
         width: 200,
       },
       {
+        title: ' Level',
+        dataIndex: 'level',
+        width: 200,
+      },
+      {
         title: 'Status',
         dataIndex: 'status',
         width: 200,
@@ -51,13 +57,17 @@ const OriginalBooks = () => {
       {
         title: 'Action',
         key: 'action',
-        render: () => (
+        render: (record) => (
           <div>
-            <a>Delete</a>
+            <a onClick={() => del(record)}>Delete</a>
           </div>
         ),
       },
     ],
+  };
+  const del = (value) => {
+    post('http://localhost:8080/api/origin/del', { id: value.id });
+    setRef((ref) => ref + 1);
   };
   const Demo = () => {
     const config = {
@@ -70,6 +80,7 @@ const OriginalBooks = () => {
       ],
     };
     const onFinish = (values) => {
+      console.log(values);
       post('http://localhost:8080/api/origin/add', values).then((res) => {
         if (res.errno === 0) {
           console.log(res);
@@ -77,6 +88,7 @@ const OriginalBooks = () => {
           alert('Add success');
         }
       });
+      setRef((ref) => ref + 1);
       console.log('Received values of form: ', values);
     };
 
@@ -106,7 +118,7 @@ const OriginalBooks = () => {
         </Form.Item>
         <Form.Item
           {...formItemLayout}
-          name='original_Language'
+          name='language'
           label='Original Language'
           rules={[
             {
@@ -130,7 +142,32 @@ const OriginalBooks = () => {
         >
           <Input placeholder='Please input the Target Languager of this book' />
         </Form.Item>
-
+        <Form.Item
+          {...formItemLayout}
+          name='level'
+          label='Level'
+          rules={[
+            {
+              required: true,
+              message: 'Please input the level of this book',
+            },
+          ]}
+        >
+          <Input placeholder='Please input the level of this book' />
+        </Form.Item>
+        <Form.Item
+          {...formItemLayout}
+          name='image'
+          label='Cover Image'
+          rules={[
+            {
+              required: true,
+              message: 'Please input the cover image of this book',
+            },
+          ]}
+        >
+          <Input placeholder='Please input the cover image of this book' />
+        </Form.Item>
         <Form.Item label='Dragger'>
           <Form.Item
             name='dragger'
@@ -172,9 +209,11 @@ const OriginalBooks = () => {
         .then((res) => {
           if (res.errno === 0) {
             return res.data.map((item) => ({
+              id: item.id,
               name: item.name,
               language: item.language,
               target_language: item.target_language,
+              level: item.level,
               status:
                 item.status == 0 ? 'Waiting for translating' : 'translating ',
             }));
@@ -186,7 +225,7 @@ const OriginalBooks = () => {
         });
     };
     fetchData();
-  }, []);
+  }, [ref]);
   const columns = state.columns.map((col, index) => ({
     ...col,
     onHeaderCell: (column) => ({

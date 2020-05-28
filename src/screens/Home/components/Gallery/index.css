@@ -34,6 +34,11 @@
   position: absolute;
   bottom: 0;
 }
+
 .site-card-wrapper.ant-row {
   width: 100vw;
 }
+
+/* .ant-col-4>a>.ant-card {
+  height: 531px !important;
+} */

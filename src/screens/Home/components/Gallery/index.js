@@ -114,11 +114,10 @@ const HomeContent = (props) => {
   console.log(books);
   return (
     <Fragment>
-      <TopContent className='Gallery' />
-      <Title level={2} style={{ textAlign: 'center' }}>
+      <TopContent className='Gallery' /> <a id='Gallery' href='#gallery'></a>
+      <Title level={2} style={{ textAlign: 'center', marginTop: 100 }}>
         Books You Might Want
       </Title>
-
       <Search
         className='homeSearch'
         placeholder='Search the documents you might be interested'
@@ -126,7 +125,6 @@ const HomeContent = (props) => {
         size='large'
         onSearch={searchingBar}
       />
-
       <div className='space-align-container' style={{ margin: 20 }}>
         <Form layout='inline' ref={formRef}>
           <Form.Item name='select' label='Original Language' hasFeedback>
@@ -196,7 +194,6 @@ const HomeContent = (props) => {
           </Button>
         </Form>
       </div>
-
       <Result
         status='warning'
         title='There are some problems with your operation.'
