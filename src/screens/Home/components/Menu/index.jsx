@@ -43,7 +43,7 @@ const HomeMenu = (props) => {
       </Menu.Item>
 
       <span className='loginLogo'>
-        your curren points : {experience}
+        your current points : {experience}
         <NavLink to='/home/userInfor'>
           <Avatar src={image} icon={<UserOutlined />} />
         </NavLink>

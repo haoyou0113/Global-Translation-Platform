@@ -114,10 +114,12 @@ const HomeContent = (props) => {
   console.log(books);
   return (
     <Fragment>
+
       <TopContent className='Gallery' /> <a id='Gallery' href='#gallery'></a>
       <Title level={2} style={{ textAlign: 'center', marginTop: 100 }}>
         Books You Might Want
       </Title>
+
       <Search
         className='homeSearch'
         placeholder='Search the documents you might be interested'

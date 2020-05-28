@@ -2,3 +2,44 @@
   position: absolute !important;
   left: -7vw !important;
 }
+
+h2.ant-typography, .ant-typography h2 {
+  /* margin-bottom: 0.5em; */
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 60;
+  font-size: 30px;
+  line-height: 1.35;
+  text-align: center;
+  /* text-decoration: none; */
+  /* text-transform: uppercase; */
+}
+
+.ant-form {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 50px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  -webkit-font-feature-settings: 'tnum', "tnum";
+  font-feature-settings: 'tnum', "tnum";
+  float: right;
+  width: 80%;
+}
+
+h1.ant-typography, .ant-typography h1 {
+  margin-bottom: 0.5em;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 1.23;
+}
+
+.ant-pagination.mini .ant-pagination-total-text, .ant-pagination.mini .ant-pagination-simple-pager {
+  height: 24px;
+  line-height: 24px;
+  margin-left: 10%;
+}
