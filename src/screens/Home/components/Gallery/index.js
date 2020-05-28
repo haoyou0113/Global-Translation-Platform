@@ -117,9 +117,12 @@ const HomeContent = (props) => {
   return (
     <Fragment>
       <TopContent className='Gallery' />
+      {/*
       <Title level={2} style={{ textAlign: 'center' }}>
         Books You Might Want
       </Title>
+  */}
+   
 
       <Search
         className='homeSearch'
