@@ -5,20 +5,31 @@ import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
 import './index.css';
+import { Anchor } from 'antd';
 
 const HomeMenu = (props) => {
-  const { firstname, role, experience } = props.userInfo.data;
-
+  const { firstname, role, experience, image } = props.userInfo.data;
+  console.log(image);
   const handleClick = (e) => {
     console.log('click ', e);
   };
-
+  const scrollToAnchor = (anchorName) => {
+    console.log(1);
+    if (anchorName) {
+      let anchorElement = document.getElementById(anchorName);
+      if (anchorElement) {
+        anchorElement.scrollIntoView();
+      }
+    }
+  };
   return (
     <Menu className='homeMenu' mode='horizontal'>
       <Menu.Item key='1' className='dashboardMenu'>
         <NavLink to='/home/main'>Home</NavLink>
       </Menu.Item>
-      <Menu.Item key='2'>Discover</Menu.Item>
+      <Menu.Item key='2' onClick={() => scrollToAnchor('Gallery')}>
+        Discover
+      </Menu.Item>
       <Menu.Item key='4'>
         About Us
         <a href='https://libraryforall.org/'></a>
@@ -34,12 +45,7 @@ const HomeMenu = (props) => {
       <span className='loginLogo'>
         your current points : {experience}
         <NavLink to='/home/userInfor'>
-          <Avatar
-            style={{
-              backgroundColor: '#87d068',
-            }}
-            icon={<UserOutlined />}
-          />
+          <Avatar src={image} icon={<UserOutlined />} />
         </NavLink>
         Hello {firstname}!
         <NavLink to='/home/main'>

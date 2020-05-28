@@ -35,6 +35,7 @@
   bottom: 0;
 }
 
+
 .ant-input-group > .ant-input:first-child, .ant-input-group-addon:first-child {
   margin-top: 50px;
     margin-bottom: 50px;
@@ -46,4 +47,8 @@
   padding: 0;
   border: 0;
   background: #f0f0f0;
+
+.site-card-wrapper.ant-row {
+  width: 100vw;
 }
+

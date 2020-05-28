@@ -53,6 +53,7 @@ const UsersManagement = () => {
   const [form] = Form.useForm();
   const [data, setData] = useState(originData);
   const [editingKey, setEditingKey] = useState('');
+  const [fre, setFre] = useState(1);
 
   const isEditing = (record) => record.key === editingKey;
 
@@ -106,7 +107,7 @@ const UsersManagement = () => {
     },
     {
       title: 'Title',
-      dataIndex: 'rolename',
+      dataIndex: 'address',
       width: '25%',
       editable: true,
     },
@@ -131,38 +132,35 @@ const UsersManagement = () => {
     {
       title: 'operation',
       dataIndex: 'operation',
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <span>
-            <a
-              href='javascript:;'
-              onClick={() => save(record.key)}
-              style={{
-                marginRight: 8,
-              }}
-            >
-              Save
-            </a>
-            <Popconfirm title='Sure to cancel?' onConfirm={cancel}>
-              <a>Cancel</a>
-            </Popconfirm>
-          </span>
-        ) : (
+      render: (text, record, index) => {
+        return (
           <div>
-            {' '}
-            <a disabled={editingKey !== ''} onClick={() => edit(record)}>
-              Edit
-            </a>
             <a> </a>
-            <a>Reward</a>
+            <a onClick={() => pro(record)}>Promote</a>
             <a> </a>
-            <a>Promote</a>
+            <a onClick={() => de(record)}>Demote</a>
           </div>
         );
       },
     },
   ];
+
+  const pro = (record) => {
+    console.log(record);
+    post('http://localhost:8080/api/user/update', {
+      username: record.username,
+      address: 'Advanced translator',
+    });
+    setFre((fre) => fre + 1);
+  };
+  const de = (record) => {
+    console.log(record);
+    post('http://localhost:8080/api/user/update', {
+      username: record.username,
+      address: 'Junior translator',
+    });
+    setFre((fre) => fre + 1);
+  };
   useEffect(() => {
     const fetchData = async () => {
       get('http://localhost:8080/api/user/topN').then((res) => {
@@ -172,7 +170,7 @@ const UsersManagement = () => {
       });
     };
     fetchData();
-  }, []);
+  }, [fre]);
   const mergedColumns = columns.map((col) => {
     if (!col.editable) {
       return col;
@@ -190,7 +188,7 @@ const UsersManagement = () => {
     };
   });
   return (
-    <Card title='Junior Translator' bordered={false}>
+    <Card title=' Translators' bordered={false}>
       <Form form={form} component={false}>
         <Table
           components={{

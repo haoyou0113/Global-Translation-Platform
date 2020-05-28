@@ -26,6 +26,8 @@ const Translation = (props) => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [value, setValue] = useState('');
+  const [translator, setTranslator] = useState('');
+  const [reviewer, setReviewer] = useState('');
   const inforArr = purpose.split('|');
   const [url, setUrl] = useState();
   const { name } = bookInfor;
@@ -63,17 +65,21 @@ const Translation = (props) => {
   const onChangePage = (page) => {
     setPageNumber(page);
   };
-  console.log(value);
+
   const submit = () => {
     alert('Success Submit');
     post(`http://localhost:8080/api/trans/update`, {
       id: inforArr[0],
       trans_content: value,
-      status: 1,
+      status_info: 'Waiting for approval',
+      translation_reviewer_name: reviewer,
+      translator_name: translator,
+      download_loc: inforArr[2],
     });
   };
+  console.log(inforArr[2]);
   return (
-    <div style={{ height: '83vh' }} className='translate'>
+    <div style={{ height: '100vh' }} className='translate'>
       <Title>Workbench</Title>
       <Title level={2}>Translation</Title>
       <Fragment>
@@ -83,15 +89,16 @@ const Translation = (props) => {
           style={{ position: 'absolute', left: '7vw' }}
         >
           <ReactPDF.Page pageNumber={pageNumber} />
+          <Pagination
+            style={{ position: 'absolute', left: '50%', bottom: -90 }}
+            total={numPages}
+            showTotal={(total) => ` ${total} pages`}
+            current={pageNumber}
+            pageSize={1}
+            size='small'
+            onChange={onChangePage}
+          />
         </ReactPDF.Document>
-        <Pagination
-          total={numPages}
-          showTotal={(total) => ` ${total} pages`}
-          current={pageNumber}
-          pageSize={1}
-          size='small'
-          onChange={onChangePage}
-        />
       </Fragment>
       <ReactQuill
         theme='snow'
@@ -111,10 +118,24 @@ const Translation = (props) => {
         description='Success Description Success Description Success Description'
         type='success'
       />
+
+      <div
+        style={{ width: 150, position: 'absolute', bottom: 20, left: '25vw' }}
+      >
+        {/* <Input onChange={setTranslator(e)}>translator</Input> */}
+        <Input
+          placeholder='Reviewer name '
+          allowClear
+          onChange={(e) => setReviewer(e.target.value)}
+        />
+        <Input
+          placeholder='Translator name '
+          allowClear
+          onChange={(e) => setTranslator(e.target.value)}
+        />
+      </div>
       <div style={{ position: 'absolute', right: '3vw', bottom: '10vh' }}>
-        {' '}
         <Button onClick={submit}>Submit</Button>
-        <Button onClick={submit}>Cancel</Button>
       </div>
       <NavLink to='/home/main'> </NavLink>
     </div>

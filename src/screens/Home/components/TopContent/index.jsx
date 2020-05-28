@@ -64,7 +64,7 @@ const TopContent = (props) => {
             key: item.id,
             img: item.image,
             name: item.firstname,
-            title: item.title,
+            title: item.address,
             numTrans: item.translation_num,
             rewardsPoint: item.experience,
           }));
