@@ -14,14 +14,141 @@
 }
 
 
-.topContent>div {
+/* .topContent>div {
     margin-top: 150px;
+} */
+
+.topContent p {
+    
+    margin-top: -50px;
+    font-size: 25px;
+    color: rgba(70, 70, 65, 0.89);
+    padding-bottom: 20px;
+}
+.topContent h3 {
+    
+    margin-top: 20px;
+    padding-bottom: 20px;
+    font-size: 35px;
+    color: rgba(70, 70, 65, 0.89);
 }
 
-.topContent>span {
+
+/* .topContent h1 {
+    
+    margin-top: 15px;
+    font-size: 45px;
+    color: rgba(70, 70, 65, 0.89);
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    background-color: chartreuse;
+
+} */
+
+.patch {
+    background: #0adee6 ;
+    border-radius:125px;
+    color: #fff;
+    font-family: "Moaria Regular", sans-serif;
+    font-size: 32px;
+    height: 260px;
+    letter-spacing: 5px;
+    margin: -10px auto 0 auto;
+    padding-top: 1px;
+    text-indent: 6px;
+    text-shadow: 1px 1px 1px #2b292a;
+    width: 260px;
+    margin-left: 0px;
+    margin-left: 80px;
+  }
+  
+  .patch_inner {
+    border: 1px dashed #fff;
+    border-radius: 200px;
+    display: block;
+    height: 250px;
+    margin: 3px 4px;
+    width: 250px;
+  }
+  
+  .patch_inner .catch{
+    /* background: rgba(233, 127, 243, 0.8); */
+    border-radius: 19px;
+    color:#2b292a;
+    display: block;
+    font-size: 22px;
+    letter-spacing: 0;
+    margin: 70px auto 15px auto;
+    padding: 2px 0;
+    text-align: left;
+    text-indent: 0;
+    text-shadow: none;
+    width: 130px;
+    font-weight: bold;
+    text-align: center;
+    
+  }
+
+
+  .patch2 {
+    background: #eb9eda ;
+    border-radius:125px;
+    color: #fff;
+    font-family: "Moaria Regular", sans-serif;
+    font-size: 20px;
+    height: 260px;
+    letter-spacing: 2px;
+    margin: -10px auto 0 auto;
+    padding-top: 10px;
+    text-indent: 6px;
+    text-shadow: 1px 1px 1px #5a5256;
+    width: 260px;
+    margin-left: 260px;
+    margin-top: 40px;
+
+  }
+  
+  .patch_inner2 {
+    border: 1px dashed #fff;
+    border-radius: 280px;
+    display: block;
+    height: 250px;
+    margin: 3px 4px;
+    width: 250px;
+  }
+  
+  .patch_inner2 .catch2{
+    /* background: rgba(233, 127, 243, 0.8); */
+    border-radius: 19px;
+    color: rgba(44, 44, 41, 0.89);
+    display: block;
+    font-size: 19px;
+    letter-spacing: 0;
+    margin: 70px auto 15px auto;
+    padding: 2px 0;
+    text-align: left;
+    text-indent: 0;
+    text-shadow: none;
+    width: 130px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+
+
+
+
+.topContent>h1 {
     display: block;
     margin: auto;
 }
+
+.topContent>h2 {
+    display: block;
+    margin: auto;
+}
+
 
 .topContent>div>span>span>input {
     /* padding-left: 20; */
@@ -35,6 +162,7 @@
 }
 
 .leadBoard {
+    margin-top: -350px;
     position: absolute;
     right: 5vw;
     width: 40vw !important;

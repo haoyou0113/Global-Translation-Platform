@@ -90,8 +90,34 @@ const TopContent = (props) => {
   return (
     <div className='topContent'>
       <div>
-        we have {bookNum} books and {data.length} staff
-      </div>
+        <p>
+          Welcome to Global Translation Platform!
+        </p>
+        <h3>
+          We have 
+        </h3>
+
+        <div className = 'patch'>
+          <div className='patch_inner'> 
+
+        <h1 className = "catch">
+        {bookNum} books 
+        </h1>
+        </div>
+        </div>
+       </div> 
+
+    <div className='topContent2'>
+    
+        <div className = 'patch2'>
+          <div className='patch_inner2'> 
+
+        <h2 className = "catch2">
+        {data.length} translators
+        </h2>
+        </div>
+        </div>
+       </div>
 
       <Table
         columns={columns}

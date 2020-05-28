@@ -34,3 +34,6 @@
   position: absolute;
   bottom: 0;
 }
+.site-card-wrapper.ant-row {
+  width: 100vw;
+}
