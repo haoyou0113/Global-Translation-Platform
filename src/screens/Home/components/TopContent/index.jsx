@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Row, Table, Avatar } from 'antd';
 import { get } from '../../../../utils/request';
 import './index.css';
+import { Typography } from 'antd';
 
+const { Title } = Typography;
 const TopContent = (props) => {
   console.log(props);
   const [data, setData] = useState([]);
@@ -89,17 +91,32 @@ const TopContent = (props) => {
 
   return (
     <div className='topContent'>
-      <div>
-        we have {bookNum} books and {data.length} staff
-      </div>
+      <Title className='titleH1'>
+        We have <b>{bookNum}</b> books and <b>{data.length}</b> staffs working
+        for the Library for All
+      </Title>
 
-      <Table
-        columns={columns}
-        dataSource={data}
-        scroll={{ y: 240 }}
-        pagination={false}
-        className='leadBoard'
-      />
+      <div>
+        <Title
+          style={{
+            width: '40vw',
+            position: 'absolute',
+            right: 0,
+            top: 170,
+            color: '#fff',
+            'font-weight': 'bold',
+          }}
+        >
+          Translators LeaderBoard
+        </Title>
+        <Table
+          columns={columns}
+          dataSource={data}
+          scroll={{ y: 240 }}
+          pagination={false}
+          className='leadBoard'
+        />
+      </div>
     </div>
   );
 };

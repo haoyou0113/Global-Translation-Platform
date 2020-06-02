@@ -35,20 +35,20 @@
   bottom: 0;
 }
 
-
-.ant-input-group > .ant-input:first-child, .ant-input-group-addon:first-child {
+.ant-input-group > .ant-input:first-child,
+.ant-input-group-addon:first-child {
   margin-top: 50px;
-    margin-bottom: 50px;
+  margin-bottom: 50px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.ant-input-search-enter-button + .ant-input-group-addon, .ant-input-search-enter-button input + .ant-input-group-addon {
+.ant-input-search-enter-button + .ant-input-group-addon,
+.ant-input-search-enter-button input + .ant-input-group-addon {
   padding: 0;
   border: 0;
   background: #f0f0f0;
-
+}
 .site-card-wrapper.ant-row {
   width: 100vw;
 }
-

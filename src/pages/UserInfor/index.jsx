@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Card, Avatar, Col, Row } from 'antd';
+import { get, post } from '../../utils/request';
 import {
   EditOutlined,
   EllipsisOutlined,
@@ -7,17 +8,29 @@ import {
 } from '@ant-design/icons';
 import './index.css';
 const { Meta } = Card;
-export default function UserInfor() {
+export default function UserInfor(props) {
+  const [userInfo, setUserInfo] = useState({});
+  const id = props.location.search.substr(1);
+  console.log(id);
+  useEffect(() => {
+    const fetchData = async () => {
+      get(`http://localhost:8080/api/user/topN`).then((res) => {
+        if (res.errno === 0) {
+          console.log(res.data);
+          const result = res.data.filter((item) => item.id == id);
+          console.log(result);
+          setUserInfo(result[0]);
+        }
+      });
+    };
+    fetchData();
+  }, []);
+  console.log(userInfo);
   return (
     <div className='userInfor'>
       <Card
         style={{ width: 300 }}
-        cover={
-          <img
-            alt='example'
-            src='https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'
-          />
-        }
+        cover={<img alt='example' src={userInfo.image} />}
         actions={[
           <SettingOutlined key='setting' />,
           <EditOutlined key='edit' />,
@@ -25,28 +38,26 @@ export default function UserInfor() {
         ]}
       >
         <Meta
-          avatar={
-            <Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />
-          }
-          title='a2'
-          description='Junior Translator'
+          avatar={<Avatar src={userInfo.image} />}
+          title={userInfo.title}
+          description={userInfo.rolename}
         />
       </Card>
       <div className='site-card-wrapper'>
         <Row gutter={16}>
           <Col span={8}>
             <Card title='Current Awards Points' bordered={false}>
-              99
+              {userInfo.experience}
             </Card>
           </Col>
           <Col span={8}>
             <Card title='Translations Completed' bordered={false}>
-              15
+              {userInfo.translation_num}
             </Card>
           </Col>
           <Col span={8}>
-            <Card title='Books Translating' bordered={false}>
-              1
+            <Card title='email' bordered={false}>
+              {userInfo.email}
             </Card>
           </Col>
         </Row>

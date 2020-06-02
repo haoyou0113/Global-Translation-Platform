@@ -136,9 +136,25 @@ const UsersManagement = () => {
         return (
           <div>
             <a> </a>
-            <a onClick={() => pro(record)}>Promote</a>
+            <a
+              onClick={() => pro(record)}
+              style={{
+                display:
+                  record.address === 'Advanced translator' ? 'none' : 'block',
+              }}
+            >
+              Promote
+            </a>
             <a> </a>
-            <a onClick={() => de(record)}>Demote</a>
+            <a
+              onClick={() => de(record)}
+              style={{
+                display:
+                  record.address === 'Junior translator' ? 'none' : 'block',
+              }}
+            >
+              Demote
+            </a>
           </div>
         );
       },

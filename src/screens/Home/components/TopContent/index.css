@@ -1,57 +1,64 @@
 .topContent {
-    background-position: center center;
-    background: linear-gradient(#fff1f0, #91d5ff);
-    /*background:#F6F6F6;*/
-    /*background: url('https://i1.wp.com/www.betranslated.com/wp-content/uploads/2019/09/machine-translation-google.jpg?resize=795%2C596&ssl=1');!}*/
-    visibility: visible;
-    background-size: 100% 100%;
-    opacity: 1;
-    transition: none 0s ease 0s;
-    transform: translateZ(0px);
-    height: 100vh;
-    padding-top: 80px;
-
+  background-position: center center;
+  background: url(https://images6.alphacoders.com/306/306638.jpg);
+  /*background:#F6F6F6;*/
+  /*background: url('https://i1.wp.com/www.betranslated.com/wp-content/uploads/2019/09/machine-translation-google.jpg?resize=795%2C596&ssl=1');!}*/
+  visibility: visible;
+  background-size: 100% 100%;
+  opacity: 1;
+  transition: none 0s ease 0s;
+  transform: translateZ(0px);
+  height: 100vh;
+  padding-top: 80px;
 }
 
-
-.topContent>div {
-    margin-top: 150px;
+.topContent > div {
+  margin-top: 150px;
 }
 
-.topContent>span {
-    display: block;
-    margin: auto;
+.topContent > span {
+  display: block;
+  margin: auto;
 }
 
-.topContent>div>span>span>input {
-    /* padding-left: 20; */
-    height: 55px;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
+.topContent > div > span > span > input {
+  /* padding-left: 20; */
+  height: 55px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
 }
 
-.topContent>div>span>span>span {
-    background-color: #001529;
+.topContent > div > span > span > span {
+  background-color: #001529;
 }
 
 .leadBoard {
-    position: absolute;
-    right: 5vw;
-    width: 40vw !important;
+  position: absolute;
+  right: 5vw;
+  width: 40vw !important;
 }
 
 .loginLogo {
-    position: absolute !important;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 16px;
-    /* font: 18px Arial, Helvetica,sans-serif; */
-    right: 10px;
-    color: #808080;
+  position: absolute !important;
+  text-decoration: none;
+  font-size: 16px;
+  /* font: 18px Arial, Helvetica,sans-serif; */
+  right: 10px;
+  color: #808080;
 }
 
-
 .loginLogo a {
-    color: #808080 !important;
-    margin-left:10px;
+  color: #808080 !important;
+  margin-left: 10px;
+}
+
+.titleH1 {
+  color: #fff !important;
+  font-size: xxx-large !important;
+  font-weight: initial !important;
+  width: 30vw;
+  text-align: center;
+  position: absolute;
+  left: 10vw;
+  top: 310px;
 }

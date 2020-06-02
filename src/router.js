@@ -9,10 +9,10 @@ import UserInfor from './pages/UserInfor';
 import HomeContent from './screens/Home/components/Gallery';
 import Translation from './screens/Home/components/Translation';
 import BookDetails from './screens/Home/components/BookDetails';
-import Login from './pages/login';
+import Login from './pages/Login';
 import './App.css';
 
-import Rigester from './pages/login'; //追加分
+import Rigester from './pages/Login'; //追加分
 // import { Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
 
 export default class ERouter extends React.Component {

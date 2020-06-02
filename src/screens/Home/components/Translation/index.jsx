@@ -80,8 +80,12 @@ const Translation = (props) => {
   console.log(inforArr[2]);
   return (
     <div style={{ height: '100vh' }} className='translate'>
-      <Title>Workbench</Title>
-      <Title level={2}>Translation</Title>
+      <Title level={1}>
+        <b>Workbench</b>
+      </Title>
+      <h1>
+        Translation Language <b> {inforArr[1]} </b>to <b>{inforArr[2]}</b>
+      </h1>
       <Fragment>
         <ReactPDF.Document
           file={url}
@@ -90,7 +94,12 @@ const Translation = (props) => {
         >
           <ReactPDF.Page pageNumber={pageNumber} />
           <Pagination
-            style={{ position: 'absolute', left: '50%', bottom: -90 }}
+            style={{
+              position: 'absolute',
+              left: '50%',
+              bottom: -90,
+              width: 360,
+            }}
             total={numPages}
             showTotal={(total) => ` ${total} pages`}
             current={pageNumber}
@@ -120,24 +129,37 @@ const Translation = (props) => {
       />
 
       <div
-        style={{ width: 150, position: 'absolute', bottom: 20, left: '25vw' }}
+        style={{
+          display: 'flex',
+          width: 340,
+          position: 'absolute',
+          bottom: -30,
+          right: '25vw',
+        }}
       >
-        {/* <Input onChange={setTranslator(e)}>translator</Input> */}
-        <Input
-          placeholder='Reviewer name '
-          allowClear
-          onChange={(e) => setReviewer(e.target.value)}
-        />
-        <Input
-          placeholder='Translator name '
-          allowClear
-          onChange={(e) => setTranslator(e.target.value)}
-        />
+        <label htmlFor=' ' style={{ marginRight: 20 }}>
+          Reviewer Signature
+          <Input
+            placeholder='Reviewer name '
+            allowClear
+            onChange={(e) => setReviewer(e.target.value)}
+          />
+        </label>
+        <label htmlFor=''>
+          {' '}
+          Translator Signature{' '}
+          <Input
+            placeholder='Translator name '
+            allowClear
+            onChange={(e) => setTranslator(e.target.value)}
+          />
+        </label>
       </div>
       <div style={{ position: 'absolute', right: '3vw', bottom: '10vh' }}>
-        <Button onClick={submit}>Submit</Button>
+        <Button onClick={submit}>
+          <NavLink to='/home/main'>Submit </NavLink>
+        </Button>
       </div>
-      <NavLink to='/home/main'> </NavLink>
     </div>
   );
 };

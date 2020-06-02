@@ -49,13 +49,12 @@ export default function BookDetails(props) {
             setUrl(pdf1);
           } else {
             setUrl(pdf3);
-          } 
+          }
 
           console.log(res.data);
         }
-      }); 
+      });
     };
-  
 
     fetchData();
   }, []);
@@ -71,11 +70,9 @@ export default function BookDetails(props) {
   };
 
   return (
-    <div style={{ height: '83vh' }}>
+    <div>
       <Fragment>
-        <ReactPDF.Document
-         file={url} 
-         onLoadSuccess={onDocumentLoadSuccess}>
+        <ReactPDF.Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
           <ReactPDF.Page pageNumber={pageNumber} />
         </ReactPDF.Document>
         <Pagination
@@ -85,11 +82,12 @@ export default function BookDetails(props) {
           pageSize={1}
           size='small'
           onChange={onChangePage}
-     />
+        />
       </Fragment>
-     
+
       <div>
         <Form
+          style={{ position: 'absolute', right: 0, bottom: 500 }}
           name='complex-form'
           onFinish={onFinish}
           labelCol={{ span: 8 }}

@@ -8,13 +8,20 @@ import './index.css';
 import { Anchor } from 'antd';
 
 const HomeMenu = (props) => {
-  const { firstname, role, experience, image } = props.userInfo.data;
-  console.log(image);
+  const {
+    firstname,
+    role,
+    address,
+    experience,
+    image,
+    username,
+    id,
+  } = props.userInfo.data;
+  console.log(address);
   const handleClick = (e) => {
     console.log('click ', e);
   };
   const scrollToAnchor = (anchorName) => {
-    console.log(1);
     if (anchorName) {
       let anchorElement = document.getElementById(anchorName);
       if (anchorElement) {
@@ -37,17 +44,20 @@ const HomeMenu = (props) => {
       <Menu.Item
         className='dashboardMenu'
         key='5'
-        style={{ display: role === 0 ? 'inline-block' : 'none' }}
+        style={{
+          display: address === 'Junior translator' ? 'none' : 'inline-block',
+        }}
       >
         <Link to='/dashboard/books'>Dashboard </Link>
       </Menu.Item>
 
       <span className='loginLogo'>
-        your current points : {experience}
-        <NavLink to='/home/userInfor'>
+        Your Current Rewards Points :{' '}
+        <b style={{ color: 'black', marginRight: 10 }}>{experience}</b>
+        <NavLink to={`/home/userInfor?${id}`}>
           <Avatar src={image} icon={<UserOutlined />} />
         </NavLink>
-        Hello {firstname}!
+        Hello {username}!
         <NavLink to='/home/main'>
           <a style={{ marginLeft: 10 }} href='/home/main'>
             Logout

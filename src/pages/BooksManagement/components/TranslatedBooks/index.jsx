@@ -22,6 +22,17 @@ const TranslatedBooks = () => {
         title: 'Status',
         dataIndex: 'status_info',
         width: 200,
+        render: (text) => {
+          var sty = '';
+          if (text === 'PASS') {
+            sty = '#58FF33';
+          } else if (text === 'REJECT') {
+            sty = '#FF5233';
+          } else {
+            sty = '#fff';
+          }
+          return <div style={{ backgroundColor: sty }}>{text}</div>;
+        },
       },
       {
         title: 'Translator',
@@ -62,6 +73,11 @@ const TranslatedBooks = () => {
     post('http://localhost:8080/api/trans/update', {
       id: value.id,
       status_info: 'PASS',
+    });
+    post('http://localhost:8080/api/user/update', {
+      username: value.translator_name,
+      experience: 5,
+      translation_num: 1,
     });
     setData((data) => data + 1);
   };
