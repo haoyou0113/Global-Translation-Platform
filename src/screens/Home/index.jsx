@@ -1,19 +1,16 @@
 // @flow
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Layout, Typography } from 'antd';
-import Gallery from './components/Gallery';
+
+import { Layout } from 'antd';
+
 import Menu from './components/Menu';
-import TopContent from './components/TopContent';
-import { get, post } from '../../utils/request';
+
+import { post } from '../../utils/request';
 import Login from '../../pages/Login';
 import './index.css';
 
-import Rigester from '../../pages/Login';
-const { Title } = Typography;
-
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Footer, Content } = Layout;
 
 export const Home = (props) => {
   const [authority, setAuthority] = useState(false);

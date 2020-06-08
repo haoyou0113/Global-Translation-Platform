@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Table, Avatar } from 'antd';
+import { Table, Avatar } from 'antd';
 import { get } from '../../../../utils/request';
 import './index.css';
 import { Typography } from 'antd';

@@ -1,4 +1,4 @@
-import { Table, Card } from 'antd';
+import { Card } from 'antd';
 import React, { Fragment } from 'react';
 import OriginalBooks from './components/OriginalBooks';
 import TranslatedBooks from './components/TranslatedBooks';

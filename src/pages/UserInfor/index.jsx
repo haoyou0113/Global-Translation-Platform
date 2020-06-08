@@ -1,6 +1,6 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Avatar, Col, Row } from 'antd';
-import { get, post } from '../../utils/request';
+import { get } from '../../utils/request';
 import {
   EditOutlined,
   EllipsisOutlined,
@@ -17,7 +17,7 @@ export default function UserInfor(props) {
       get(`http://localhost:8080/api/user/topN`).then((res) => {
         if (res.errno === 0) {
           console.log(res.data);
-          const result = res.data.filter((item) => item.id == id);
+          const result = res.data.filter((item) => item.id === id);
           console.log(result);
           setUserInfo(result[0]);
         }

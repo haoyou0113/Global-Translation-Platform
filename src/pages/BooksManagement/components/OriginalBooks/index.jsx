@@ -1,9 +1,9 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { get, post } from '../../../../utils/request';
 import { Table } from 'antd';
-import { Form, Select, DatePicker, Button, Upload, Input } from 'antd';
-import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
-const { Option } = Select;
+import { Form, Button, Upload, Input } from 'antd';
+import { InboxOutlined } from '@ant-design/icons';
+
 const OriginalBooks = () => {
   const [originBooks, setOriginBooks] = useState([]);
   const [ref, setRef] = useState(1);
@@ -215,7 +215,7 @@ const OriginalBooks = () => {
               target_language: item.target_language,
               level: item.level,
               status:
-                item.status == 0 ? 'Waiting for translating' : 'translating ',
+                item.status === 0 ? 'Waiting for translating' : 'translating ',
             }));
           }
         })

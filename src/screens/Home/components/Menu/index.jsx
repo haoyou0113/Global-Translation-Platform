@@ -5,22 +5,13 @@ import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
 import './index.css';
-import { Anchor } from 'antd';
 
 const HomeMenu = (props) => {
-  const {
-    firstname,
-    role,
-    address,
-    experience,
-    image,
-    username,
-    id,
-  } = props.userInfo.data;
+  const { address, experience, image, username, id } = props.userInfo.data;
   console.log(address);
-  const handleClick = (e) => {
-    console.log('click ', e);
-  };
+  // const handleClick = (e) => {
+  //   console.log('click ', e);
+  // };
   const scrollToAnchor = (anchorName) => {
     if (anchorName) {
       let anchorElement = document.getElementById(anchorName);

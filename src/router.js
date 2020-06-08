@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import App from './App';
 import { Home } from './screens/Home';
 import { Dashboard } from './screens/Dashboard';
@@ -12,7 +12,7 @@ import BookDetails from './screens/Home/components/BookDetails';
 import Login from './pages/Login';
 import './App.css';
 
-import Rigester from './pages/Login'; //追加分
+// import Rigester from './pages/Login'; //
 // import { Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
 
 export default class ERouter extends React.Component {

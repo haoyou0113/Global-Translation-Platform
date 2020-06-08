@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, Icon } from 'antd';
+import { Menu } from 'antd';
 import { NavLink } from 'react-router-dom';
 import MenuConfig from './../../config/menuConfig';
 
@@ -11,12 +11,12 @@ export default class NavLeft extends Component {
     const menuTreeNode = this.renderMenu(MenuConfig);
 
     this.setState({
-      menuTreeNode
+      menuTreeNode,
     });
   }
   // menu render
-  renderMenu = data => {
-    return data.map(item => {
+  renderMenu = (data) => {
+    return data.map((item) => {
       if (item.children) {
         return (
           <SubMenu title={item.title} key={item.key}>
@@ -35,10 +35,10 @@ export default class NavLeft extends Component {
     super(props);
     this.state = {};
   }
-  handleClick = e => {
+  handleClick = (e) => {
     console.log('click ', e);
     this.setState({
-      current: e.key
+      current: e.key,
     });
   };
   render() {

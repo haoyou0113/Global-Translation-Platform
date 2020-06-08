@@ -8,7 +8,7 @@ import {
   Input,
   Form,
 } from 'antd';
-import { Document, Page, pdfjs } from 'react-pdf';
+import { pdfjs } from 'react-pdf';
 import { get } from '../../../../utils/request';
 import pdf1 from './20 Busy Little Ants.pdf';
 import pdf2 from './How The Rooster Found His Sound.pdf';
@@ -43,9 +43,9 @@ export default function BookDetails(props) {
           setBook(res.data);
           setOriList(res.data.language.split(','));
           setTarList(res.data.target_language.split(','));
-          if (res.data.name == 'How The Rooster Found His Sound') {
+          if (res.data.name === 'How The Rooster Found His Sound') {
             setUrl(pdf2);
-          } else if (res.data.name == '20 Busy Little Ants') {
+          } else if (res.data.name === '20 Busy Little Ants') {
             setUrl(pdf1);
           } else {
             setUrl(pdf3);

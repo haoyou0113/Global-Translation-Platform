@@ -1,10 +1,10 @@
-import React, { Component, useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Typography, Input, Button, Alert, Pagination } from 'antd';
 import { NavLink } from 'react-router-dom';
 //import { Editor } from 'react-draft-wysiwyg';
 //import { EditorState, createWithContent } from 'draft-js';
 
-import { Document, Page, pdfjs } from 'react-pdf';
+import { pdfjs } from 'react-pdf';
 import { get, post } from '../../../../utils/request';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -16,13 +16,12 @@ import 'draft-js/dist/Draft.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 const ReactPDF = require('react-pdf');
 
-const { Title, Paragraph } = Typography;
-const { TextArea } = Input;
+const { Title } = Typography;
 
 const Translation = (props) => {
   const purpose = props.location.search.substr(1);
   const [status, setStatus] = useState(false);
-  const [bookInfor, setBookInfor] = useState('');
+
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [value, setValue] = useState('');
@@ -30,16 +29,16 @@ const Translation = (props) => {
   const [reviewer, setReviewer] = useState('');
   const inforArr = purpose.split('|');
   const [url, setUrl] = useState();
-  const { name } = bookInfor;
+
   useEffect(() => {
     const fetchData = async () => {
       get(`http://localhost:8080/api/trans/content?id=${inforArr[0]}`).then(
         (res) => {
           if (res.errno === 0) {
             setValue(`${res.data.name}`);
-            if (inforArr[0] == 146) {
+            if (inforArr[0] === 146) {
               setUrl(pdf1);
-            } else if (inforArr[0] == 552) {
+            } else if (inforArr[0] === 552) {
               setUrl(pdf2);
             } else {
               setUrl(pdf3);

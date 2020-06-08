@@ -1,16 +1,16 @@
-import React, { Component, Fragment, useState, useEffect } from 'react';
-import { Card, Row, Col, Modal } from 'antd';
+import React, { Fragment, useState, useEffect } from 'react';
+import { Card, Row, Col } from 'antd';
 import { Input } from 'antd';
 import Rating from '@material-ui/lab/Rating';
 // import Typography from '@material-ui/core/Typography';
 // import Box from '@material-ui/core/Box';
-import { Button, Layout, Form, Rate, Alert, Result, Typography } from 'antd';
+import { Button, Form, Rate, Result, Typography } from 'antd';
 import { get } from '../../../../utils/request';
 import TopContent from '../TopContent';
-import { Document, Page, pdfjs } from 'react-pdf';
-import { Link } from 'react-router-dom';
+import { pdfjs } from 'react-pdf';
+
 import { NavLink } from 'react-router-dom';
-import { Select, Space } from 'antd';
+import { Select } from 'antd';
 
 import './index.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -19,9 +19,6 @@ const { Option } = Select;
 const { Search } = Input;
 const { Title } = Typography;
 const HomeContent = (props) => {
-  const [visible, setVisible] = useState(false);
-
-  const [currentImg, setCurrentImg] = useState('');
   const [originbooks, setOriginBooks] = useState([]);
   const [language, setLanguage] = useState([]);
   const [books, setBooks] = useState([
@@ -114,12 +111,10 @@ const HomeContent = (props) => {
   console.log(books);
   return (
     <Fragment>
-
       <TopContent className='Gallery' /> <a id='Gallery' href='#gallery'></a>
       <Title level={2} style={{ textAlign: 'center', marginTop: 100 }}>
         Books You Might Want
       </Title>
-
       <Search
         className='homeSearch'
         placeholder='Search the documents you might be interested'
