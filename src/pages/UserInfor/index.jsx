@@ -10,22 +10,18 @@ import './index.css';
 const { Meta } = Card;
 export default function UserInfor(props) {
   const [userInfo, setUserInfo] = useState({});
-  const id = props.location.search.substr(1);
-  console.log(id);
+  const userId = props.location.search.substr(1);
   useEffect(() => {
-    const fetchData = async () => {
-      get(`http://localhost:8080/api/user/topN`).then((res) => {
-        if (res.errno === 0) {
-          console.log(res.data);
-          const result = res.data.filter((item) => item.id === id);
-          console.log(result);
-          setUserInfo(result[0]);
-        }
-      });
-    };
-    fetchData();
+    get(`http://localhost:8080/api/user/topN`).then((res) => {
+      if (res.errno === 0) {
+        console.log(res.data);
+        const result = res.data.filter((i) => i.id == userId);
+        console.log(result);
+        setUserInfo(result[0]);
+      }
+    });
   }, []);
-  console.log(userInfo);
+  console.log('userInfo', userInfo);
   return (
     <div className='userInfor'>
       <Card

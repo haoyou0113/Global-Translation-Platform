@@ -1,3 +1,48 @@
+====Introduction
+
+Login
+![image](https://github.com/haoyou0113/Global-Translation-Platform-Team72/blob/master/public/img/login.png)
+
+---
+
+Home Page
+![image](https://github.com/haoyou0113/Global-Translation-Platform-Team72/blob/master/public/img/homePage.png)
+
+---
+
+Searching Books
+![image](https://github.com/haoyou0113/Global-Translation-Platform-Team72/blob/master/public/img/searching.png)
+
+---
+
+Previewing Books
+![image](https://github.com/haoyou0113/Global-Translation-Platform-Team72/blob/master/public/img/previewBooks.png)
+
+---
+
+Work Bench
+![image](https://github.com/haoyou0113/Global-Translation-Platform-Team72/blob/master/public/img/workBench.png)
+
+---
+
+Translations Management
+![image](https://github.com/haoyou0113/Global-Translation-Platform-Team72/blob/master/public/img/bookmanage.png)
+
+---
+
+Book Management
+![image](https://github.com/haoyou0113/Global-Translation-Platform-Team72/blob/master/public/img/bookUploadManage.png)
+
+---
+
+Users Management
+![image](https://github.com/haoyou0113/Global-Translation-Platform-Team72/blob/master/public/img/usermanage.png)
+
+---
+
+User Information
+![image](https://github.com/haoyou0113/Global-Translation-Platform-Team72/blob/master/public/img/userInfo.png)
+
 Git management
 
 1 - When we started, we had to download the latest code of master, because the GitHub code contains the code of all the members, and we can only ensure that the code of each member is the same after we continue.
